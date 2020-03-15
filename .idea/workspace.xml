@@ -18,7 +18,12 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="site" type="feb32156:DbDataSourceImpl" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FavoritesManager">
@@ -30,6 +35,7 @@
         <option value="Flask Main" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -43,11 +49,16 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flaskblog/static" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog\static" />
+      <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog" />
       <recent name="C:\Users\mxdba\PycharmProjects\blogflask" />
     </key>
   </component>
@@ -74,6 +85,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="routes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="blogflask" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/flaskblog" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/flaskblog/routes.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="blogflask" type="Python.FlaskServer">
       <module name="blogflask" />
       <option name="target" value="$PROJECT_DIR$/app.py" />
@@ -81,7 +114,7 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -89,9 +122,18 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <configuration name="FlexiTerm.sh" type="ShConfigurationType">
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/flaskblog/FlexiTerm-master/script/FlexiTerm.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/flaskblog/FlexiTerm-master/script" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.routes" />
       </list>
     </recent_temporary>
   </component>
@@ -112,7 +154,20 @@
       <workItem from="1583153634549" duration="309000" />
       <workItem from="1583416946248" duration="43000" />
       <workItem from="1583503648249" duration="13903000" />
-      <workItem from="1583586632221" duration="8945000" />
+      <workItem from="1583586632221" duration="19345000" />
+      <workItem from="1583614049215" duration="65000" />
+      <workItem from="1583662661960" duration="5253000" />
+      <workItem from="1583667972151" duration="3011000" />
+      <workItem from="1583671888577" duration="341000" />
+      <workItem from="1583672276450" duration="258000" />
+      <workItem from="1583748241313" duration="5341000" />
+      <workItem from="1584122954023" duration="6736000" />
+      <workItem from="1584186886710" duration="628000" />
+      <workItem from="1584187573785" duration="6275000" />
+      <workItem from="1584200044504" duration="2105000" />
+      <workItem from="1584204867568" duration="855000" />
+      <workItem from="1584209704522" duration="1629000" />
+      <workItem from="1584282142812" duration="11727000" />
     </task>
     <servers />
   </component>
@@ -120,6 +175,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1159" y="262" key="#FlexiTerm.sh" timestamp="1583664963443">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1159" y="262" key="#FlexiTerm.sh/0.0.1920.1050@0.0.1920.1050" timestamp="1583664963443" />
     <state x="727" y="328" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1583084295601">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -128,26 +187,38 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="1167" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1583416982734" />
-    <state width="885" height="117" key="GridCell.Tab.0.bottom" timestamp="1583595352877">
+    <state width="1333" height="197" key="GridCell.Tab.0.bottom" timestamp="1584296142006">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="885" height="117" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1583595352877" />
-    <state width="885" height="117" key="GridCell.Tab.0.center" timestamp="1583595352877">
+    <state width="1333" height="197" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1584296142006" />
+    <state width="1333" height="197" key="GridCell.Tab.0.center" timestamp="1584296142006">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="885" height="117" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1583595352877" />
-    <state width="885" height="117" key="GridCell.Tab.0.left" timestamp="1583595352877">
+    <state width="1333" height="197" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1584296142006" />
+    <state width="1333" height="197" key="GridCell.Tab.0.left" timestamp="1584296142005">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="885" height="117" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1583595352877" />
-    <state width="885" height="117" key="GridCell.Tab.0.right" timestamp="1583595352877">
+    <state width="1333" height="197" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1584296142005" />
+    <state width="1333" height="197" key="GridCell.Tab.0.right" timestamp="1584296142006">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="885" height="117" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1583595352877" />
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1583586638812">
+    <state width="1333" height="197" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1584296142006" />
+    <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1584187767775">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1583586638812" />
+    <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1050@0.0.1920.1050" timestamp="1584187767775" />
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1584282151279">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1584282151279" />
+    <state x="1093" y="260" width="607" height="536" key="find.popup" timestamp="1583607292363">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1093" y="260" width="607" height="536" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1583607292363" />
+    <state x="1041" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1584189635935">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1041" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1584189635935" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -161,6 +232,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/blogflask$app.coverage" NAME="app Coverage Results" MODIFIED="1583595352870" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/blogflask$routes.coverage" NAME="routes Coverage Results" MODIFIED="1583755666867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flaskblog" />
+    <SUITE FILE_PATH="coverage/blogflask$app.coverage" NAME="app Coverage Results" MODIFIED="1584296141991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

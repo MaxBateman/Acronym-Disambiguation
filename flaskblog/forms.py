@@ -4,7 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextA
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 
-class PostForm(FlaskForm):
+class QuerytForm(FlaskForm):
     term = StringField('Term', validators=[DataRequired()])
-    content = TextAreaField('Content', validators=[DataRequired()])
+
     submit = SubmitField('Post')
