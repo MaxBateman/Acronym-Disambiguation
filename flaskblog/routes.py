@@ -27,7 +27,10 @@ pubmed = PubMed(tool="PubMedSearch", email="maxmoneywells@gmail.com")
 def home():
     queriest = QueryT.query.all()
     queriest = queriest[::-1]
-    return render_template('home.html', queriest=queriest)
+    tick_file = os.path.join(os.getcwd(), 'flaskblog/static/tick.png')
+    #if num matched > 0
+    picture_file = "tickg.jpg"
+    return render_template('home.html', queriest=queriest, picture_file=picture_file)
 
 
 @app.route("/about")
@@ -63,22 +66,25 @@ def new_queryt():
         enum = 0
         print(search_term_split)
         valid = False
+        selected_fullforms = []
         for word in search_term_split:
             print(word)
 
             if validacr(word):
                 potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(word[0])).all()
                 fword, valid = checktings(word, potential_full)
+                if valid:
+                    selected_fullforms.append(fword)
                 search_term_split[enum] = fword
             enum = enum + 1
 
         search_term = " ".join(search_term_split)
         #implement task queue pubmed overload --
         abstracts = get_pubmed(search_term)
-        if valid:
-             origsearch_term = form.term.data
-
-        queryt = QueryT(origterm=origsearch_term, term=search_term, content=abstracts)
+        origsearch_term = form.term.data
+        #for term in fword:
+         #   check_match(abstracts, term)
+        queryt = QueryT(origterm=origsearch_term, term=search_term, content=abstracts,percentmatch=1)
         db.session.add(queryt)
         db.session.commit()
         flash('Your query has been created!', 'success')
@@ -92,7 +98,6 @@ def checktings(word, potential_full):
         if word.lower() in term.terminology.lower():
             return word, False
         if findBestLF(word, term.terminology):
-            print(term)
             search_term = term.terminology
             return search_term, True
     return word, False
@@ -148,7 +153,7 @@ def get_terms(fulltext):
 
 
 def get_pubmed(term):
-    results = pubmed.query(term, max_results=1)
+    results = pubmed.query(term, max_results=5)
     counter = 0
     for article in results:
         abstract = article.abstract
