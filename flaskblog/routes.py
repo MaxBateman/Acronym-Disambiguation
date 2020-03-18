@@ -54,15 +54,29 @@ def new_queryt():
         enum = 0
 
         valid = False
-        if len(search_term_split) < 2:
-            if validacr(search_term):
-                potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(search_term[0])).all()
-                fword, valid = checktings(search_term, potential_full)
-                abstracts = get_pubmed(fword)
-
+        if len(search_term_split) < 2 and validacr(search_term):
+            potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(search_term[0])).all()
+            print(potential_full)
+            fword, valid, lfmatches = checktings(search_term, potential_full)
+            if lfmatches:
+                lfmatches = ", ".join(lfmatches)
             else:
                 fword = search_term
-                abstracts = get_pubmed(search_term)
+                percentmatch = "N/A"
+                present = False
+                acrmatches = None
+                lfmatches = None
+            abstracts = get_pubmed(fword)
+            print("valid")
+
+        else:
+            fword = search_term
+            percentmatch = "N/A"
+            present = False
+            acrmatches = None
+            lfmatches = None
+            abstracts = get_pubmed(search_term)
+            print("invalid")
 
         # for word in search_term_split:
         #     print(word)
@@ -79,12 +93,13 @@ def new_queryt():
         #implement task queue pubmed overload --
         #abstracts = get_pubmed(fword)
 
-        sentences = sent_tokenize(abstracts)
+
         # for sentence in sentences:
         #     tokens = word_tokenize(sentence)
         #     words = [word for word in tokens if word.isalpha() and not word in stop_words]
-        percentmatch = "N/A"
+
         if valid:
+            sentences = sent_tokenize(abstracts)
             counter = 0
             hits = 0
             acr_hits = []
@@ -97,7 +112,11 @@ def new_queryt():
                     counter_temp, hits_temp, acr_list_temp = extractpairs(sentence,fword)
                     counter = counter+ counter_temp
                     hits = hits + hits_temp
-                    acr_hits.extend(acr_list_temp)
+                    print(acr_list_temp)
+                    for word in acr_list_temp:
+                        if word not in acr_hits:
+                            acr_hits.append(word)
+                    #acr_hits.extend(acr_list_temp)
                     print(hits, " : ", counter, " : ", acr_hits)
                     #percentmatch = ('%.2s' % str(hits / counter * 100))
                     if counter > 100:
@@ -105,10 +124,18 @@ def new_queryt():
                     if hits > 100:
                         hits = "99+"
                     percentmatch = str(hits) + "/" + str(counter)
+            if acr_hits:
+                if search_term in acr_hits:
+                    present = True
+                else:
+                    present = False
+                acrmatches = ", ".join(acr_hits)
+
 
         #for term in fword:
          #   check_match(abstracts, term)
-        queryt = QueryT(origterm=search_term, term=fword, content=abstracts,percentmatch=percentmatch)
+
+        queryt = QueryT(origterm=search_term, term=fword, content=abstracts,percentmatch=percentmatch, origtermpresent=present, acrmatches=acrmatches,lfmatches=lfmatches)
         db.session.add(queryt)
         db.session.commit()
         flash('Your query has been created!', 'success')
@@ -190,16 +217,18 @@ def extractpairs(sent, prelong="None"):
             lterm = prelong
         if validacr(sterm):
             lterm = (matchPair(sterm, lterm,prelong))
+            counter = counter + 1
+            sterm_list.append(sterm)
             if not lterm == "None":
                 hits = hits + 1
+
         # print("hi ",lterm, "no ",sterm)
         # return lterm, sterm
         # print(pclose)
         sent = sent[pclose:]
-        counter = counter + 1
+
         print("counter: ", counter, "hits: ", hits)
         print("Short FORM: ", sterm," & Long :" ,lterm)
-        sterm_list.append(sterm)
         print("done")
     return counter, hits, sterm_list
 
@@ -248,13 +277,20 @@ def matchPair(acr, deff, prelong="None"):
 
 
 def checktings(word, potential_full):
+    match = False
+    compmatches = []
     for term in potential_full:
         if word.lower() in term.terminology.lower():
-            return word, False
+            print("INSIDEMEAHHH")
+            return word, False, None
         if findBestLF(word, term.terminology):
-            search_term = term.terminology
-            return search_term, True
-    return word, False
+            print("NOT INSIDE ME AHAH")
+            compmatches.append(term.terminology)
+            match = True
+    if match:
+        search_term = compmatches[0]
+        return search_term, True, compmatches
+    return word, False, None
 
 
 def findBestLF(SF, LF, prelong="None"):
@@ -269,7 +305,7 @@ def findBestLF(SF, LF, prelong="None"):
         # print(currChar + " x")
         ##print(LF[lIndex].lower())
         if currChar.isalnum():
-
+            lIndex = lIndex - 1
             while lIndex >= 0 and LF[lIndex].lower() != currChar:
                 # print(LF[lIndex].lower(),currChar)
                 if sIndex == 0 and lIndex > 0:
@@ -293,6 +329,7 @@ def findBestLF(SF, LF, prelong="None"):
 
 def validacr(acr):
     x =(any(c.isalpha() for c in acr) and 2 < len(acr) < 10 and (acr[0].isalpha() or acr[0].isdigit()))
+    print("VALID : ", x, ": ",acr)
     #print("x : " ,x)
     return x
 
@@ -316,6 +353,7 @@ def get_pubmed(term):
     abstract ="N/A"
     for article in results:
         abstract = article.abstract
+        print(abstract)
         if abstract:
             if abstracts == "":
                 abstracts = abstract
@@ -329,60 +367,15 @@ def get_pubmed(term):
 @app.route("/queryt/<int:queryt_id>")
 def queryt(queryt_id):
     queryt = QueryT.query.get_or_404(queryt_id)
-    return render_template('queryt.html', title=queryt.term, queryt=queryt)
+    lfmatches = None
+    acrmatches = None
+    if queryt.lfmatches:
+        lfmatches = queryt.lfmatches.split(", ")
+    if queryt.acrmatches:
+        acrmatches = queryt.acrmatches.split(", ")
+    return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches)
 
 
 
 
-#def run_shelly():
-    #os.chdir(os.getcwd() + "/flaskblog/FlexiTerm-master/script")
-    #path = os.getcwd() + "/FlexiTerm.bat"
-   # subprocess.call([path], shell=True)
-    #subprocess.call([r"C:/Users/mxdba/PycharmProjects/blogflask/flaskblog/FlexiTerm-master/src/FlexiTerm.bat"])
-    #os.system("C:/Users/mxdba/PycharmProjects/blogflask/flaskblog/FlexiTerm-master/script/FlexiTerm.bat -1")
-    #os.chdir("C:/Users/mxdba/PycharmProjects/blogflask/flaskblog/FlexiTerm-master/src")
-    #subprocess.Popen("java -Xmx1000M -cp '..//bin;..//lib//edu.mit.jwi_2.1.5.jar;..//lib//jazzy-core.jar;..//lib//sqlite-jdbc-3.8.11.2.jar;..//lib//stanford-corenlp-2010-11-12.jar;..//lib//stanford-postagger.jar;..//lib//tinylog-1.3.5.jar;..//lib//m3rd_20080611.jar' ../src/FlexiTerm  -1",shell =True,cwd="C://Users//mxdba//PycharmProjects//blogflask//flaskblog//FlexiTerm-master//src")
 
- #for word in searchTermSplit:
-         #   print(word)
-        #if checkAcr
-        # stringl = ""
-        # for key in terms["terms"]:
-        #     stringl = stringl , terms["terms"][key]
-
-
-
-        #stringl = ""
-        #for key in terms["terms"]:
-         #   stringl = stringl + " 1 " + key
-
-        # file = "blogflask/flaskblog/FlexiTerm-1.0/text/abstract.txt"
-        # print(listdir)
-        # with open(file, "w") as file2write:
-        #     file2write.write(stringl)
-
-
-# existy =Dictionary.query.filter_by(id = 0).first()
-# print("existy : ",existy)
-# if existy is None:
-#     def insert_initial_dict():
-#         dict_file = os.path.join(app.root_path, '/static/termin.txt')
-#         fh = open(dict_file)
-#         for line in fh:
-#             print("hi" +line)
-#             #db.session.add(line)
-#         #db.session.commit()
-#     insert_initial_dict()
-
-
-#if not functions.database_exists('sqlite:///site.db'):
-    #db.create_all()
-    # db.create(Dictionary)
-    # db.create_all()
-    # dict_file =url_for("static", filename ="termin.txt")
-    # fh = open(dict_file)
-    # for line in fh:
-    #     print(line)
-    #     #db.session.add(line)
-    # #db.session.commit()
-    # fh.close()

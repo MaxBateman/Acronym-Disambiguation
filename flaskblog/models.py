@@ -9,6 +9,9 @@ class QueryT(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     percentmatch = db.Column(db.String(3), nullable=False)
+    origtermpresent = db.Column(db.Boolean, nullable=False)
+    acrmatches = db.Column(db.Text)
+    lfmatches = db.Column(db.Text)
 
     def __repr__(self):
         return f"Post('{self.term}', '{self.date_posted}')"

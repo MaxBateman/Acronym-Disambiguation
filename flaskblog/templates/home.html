@@ -1,5 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
+    <main role="main" class="container col-md-10">
+      <div class="row">
+        <div>
+          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                  {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+
     {% for queryt in queriest %}
         <article class="media content-section">
             <div class="media-body">
@@ -14,9 +28,15 @@
             </div>
 {#            <img class ="align-self-center mr-3" src ="{{ url_for('static',filename=picture_file)}}">#}
 
+            {% if queryt.origtermpresent %}
+                <div class = "align-self-center circleg"><p></p>{{  queryt.percentmatch }}</div>
+            {% else %}
+                <div class = "align-self-center circle"><p></p>{{  queryt.percentmatch }}</div>
+            {% endif %}
 
-            <div class = "align-self-center circle"><p></p>{{  queryt.percentmatch }}</div>
 
         </article>
     {% endfor %}
+      </div>
+    </main>
 {% endblock content %}

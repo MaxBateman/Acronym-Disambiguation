@@ -43,6 +43,16 @@ h1, h2, h3, h4, h5, h6 {
   border: 5px solid #666;
   margin: 10px;
 }
+.circleg {
+  width: 5em;
+  height: 5em;
+  line-height: 3.5em;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 32px;
+  border: 5px solid green;
+  margin: 10px;
+}
 .article-title {
   color: #444444;
 }
