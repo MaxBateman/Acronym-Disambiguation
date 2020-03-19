@@ -49,99 +49,121 @@ def new_queryt():
 
     if form.validate_on_submit():
         #terms = get_terms(get_pubmed(form.term.data))
-        search_term = form.term.data
-        search_term_split = search_term.split()
-        enum = 0
-
-        valid = False
-        if len(search_term_split) < 2 and validacr(search_term):
-            potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(search_term[0])).all()
-            print(potential_full)
-            fword, valid, lfmatches = checktings(search_term, potential_full)
-            if lfmatches:
-                lfmatches = ", ".join(lfmatches)
-            else:
-                fword = search_term
-                percentmatch = "N/A"
-                present = False
-                acrmatches = None
-                lfmatches = None
-            abstracts = get_pubmed(fword)
-            print("valid")
-
-        else:
-            fword = search_term
-            percentmatch = "N/A"
-            present = False
-            acrmatches = None
-            lfmatches = None
-            abstracts = get_pubmed(search_term)
-            print("invalid")
-
-        # for word in search_term_split:
-        #     print(word)
-        #
-        #     if validacr(word):
-        #         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(word[0])).all()
-        #         fword, valid = checktings(word, potential_full)
-        #         if valid:
-        #             selected_fullforms.append(fword)
-        #
-        #         search_term_split[enum] = fword
-        #     enum = enum + 1
-
-        #implement task queue pubmed overload --
-        #abstracts = get_pubmed(fword)
-
-
-        # for sentence in sentences:
-        #     tokens = word_tokenize(sentence)
-        #     words = [word for word in tokens if word.isalpha() and not word in stop_words]
-
-        if valid:
-            sentences = sent_tokenize(abstracts)
-            counter = 0
-            hits = 0
-            acr_hits = []
-            for sentence in sentences:
-
-                if "(" in sentence and ")" in sentence:
-                    #print(sentence)
-                    #print(extractpairs(sentence, fword))
-
-                    counter_temp, hits_temp, acr_list_temp = extractpairs(sentence,fword)
-                    counter = counter+ counter_temp
-                    hits = hits + hits_temp
-                    print(acr_list_temp)
-                    for word in acr_list_temp:
-                        if word not in acr_hits:
-                            acr_hits.append(word)
-                    #acr_hits.extend(acr_list_temp)
-                    print(hits, " : ", counter, " : ", acr_hits)
-                    #percentmatch = ('%.2s' % str(hits / counter * 100))
-                    if counter > 100:
-                        counter = "99+"
-                    if hits > 100:
-                        hits = "99+"
-                    percentmatch = str(hits) + "/" + str(counter)
-            if acr_hits:
-                if search_term in acr_hits:
-                    present = True
-                else:
-                    present = False
-                acrmatches = ", ".join(acr_hits)
-
-
+        inp(form.term.data)
         #for term in fword:
          #   check_match(abstracts, term)
-
-        queryt = QueryT(origterm=search_term, term=fword, content=abstracts,percentmatch=percentmatch, origtermpresent=present, acrmatches=acrmatches,lfmatches=lfmatches)
-        db.session.add(queryt)
-        db.session.commit()
-        flash('Your query has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create_QueryT.html', title='New Query',
                            form=form, legend='New Query')
+
+
+@app.route("/egg/<sterm>/<termdata>", methods=['GET'])
+def egg(sterm,termdata):
+    inp(sterm,termdata)
+    return redirect(url_for('home'))
+
+
+def inp(termdata,oterm = None):
+    search_term = termdata
+    search_term_split = search_term.split()
+    enum = 0
+    present = False
+    valid = False
+    acrmatches = None
+    lfmatches = None
+    percentmatch = "N/A"
+    fword = search_term
+    if len(search_term_split) < 2 and validacr(search_term):
+        potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(search_term[0])).all()
+        print(potential_full)
+
+        fword, valid, lfmatches = checktings(search_term, potential_full)
+        if oterm:
+            fword = oterm
+        if lfmatches:
+            lfmatches = ", ".join(lfmatches)
+
+        abstracts = get_pubmed(fword)
+        print("valid",valid)
+
+    else:
+        abstracts = get_pubmed(search_term)
+        print("invalid")
+
+    # for word in search_term_split:
+    #     print(word)
+    #
+    #     if validacr(word):
+    #         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(word[0])).all()
+    #         fword, valid = checktings(word, potential_full)
+    #         if valid:
+    #             selected_fullforms.append(fword)
+    #
+    #         search_term_split[enum] = fword
+    #     enum = enum + 1
+
+    # implement task queue pubmed overload --
+    # abstracts = get_pubmed(fword)
+
+
+    # for sentence in sentences:
+    #     tokens = word_tokenize(sentence)
+    #     words = [word for word in tokens if word.isalpha() and not word in stop_words]
+
+    if valid:
+        sentences = sent_tokenize(abstracts)
+        counter = 0
+        hits = 0
+        acr_hits = []
+        for sentence in sentences:
+
+            if " (" in sentence and ")" in sentence:
+                # print(sentence)
+                # print(extractpairs(sentence, fword))
+
+                counter_temp, hits_temp, acr_list_temp = extractpairs(sentence, fword)
+                counter = counter + counter_temp
+                hits = hits + hits_temp
+                print(acr_list_temp)
+                for word in acr_list_temp:
+                    if word not in acr_hits:
+                        acr_hits.append(word)
+                # acr_hits.extend(acr_list_temp)
+                print(hits, " : ", counter, " : ", acr_hits)
+                # percentmatch = ('%.2s' % str(hits / counter * 100))
+                if counter > 100:
+                    counter = "99+"
+                if hits > 100:
+                    hits = "99+"
+                percentmatch = str(hits) + "/" + str(counter)
+        if acr_hits:
+            if search_term in acr_hits:
+                present = True
+            else:
+                present = False
+            acrmatches = ", ".join(acr_hits)
+
+    queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
+                    origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches)
+    db.session.add(queryt)
+    db.session.commit()
+    flash('Your query has been created!', 'success')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def extractpairs(sent, prelong="None"):
@@ -149,7 +171,8 @@ def extractpairs(sent, prelong="None"):
     counter = 0
     hits =0
     sterm_list =[]
-    while "(" in sent:
+    hit_list =[]
+    while " (" in sent and ")" in sent:
         # try:
         # first open bracket
 
@@ -201,8 +224,9 @@ def extractpairs(sent, prelong="None"):
 
         if len(acrw) > 2 or len(sterm) > len(lterm):
             lterm = sterm
-            # print(termw)
-            sterm = termw[-1]
+            print(termw)
+            if len(termw)>0:
+                sterm = termw[-1]
         # print(sterm)
         # print(lterm)
         a = "()"
@@ -221,6 +245,7 @@ def extractpairs(sent, prelong="None"):
             sterm_list.append(sterm)
             if not lterm == "None":
                 hits = hits + 1
+                hit_list.append(sterm)
 
         # print("hi ",lterm, "no ",sterm)
         # return lterm, sterm
@@ -230,7 +255,7 @@ def extractpairs(sent, prelong="None"):
         print("counter: ", counter, "hits: ", hits)
         print("Short FORM: ", sterm," & Long :" ,lterm)
         print("done")
-    return counter, hits, sterm_list
+    return counter, hits, hit_list
 
     # except Exception:
     #    print ("Not applicable")
