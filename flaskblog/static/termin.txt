@@ -9,7 +9,6 @@ Adrenocorticotropic Hormone
 American Diabetes Association
 Antidiuretic Hormone
 Activities Of Daily Living
-Activities Of Daily Living
 Automated External Defibrillator
 Atrial Fibrillation
 Advanced First Aid
@@ -41,7 +40,7 @@ Arteriosclerotic Heart Disease
 Aspartate Aminotransferase
 Acute Tubular Necrosis
 Both Ears
-Atrio-Ventricular (cardiac)
+Atrio-Ventricular
 Atrio-Ventricular Block
 Atrio-ventricular Block
 Below Knee
@@ -248,7 +247,7 @@ Kidney
 Keep Vein Open
 & A Light And Accommodation
 Light And Accommodation
-Left Anterior Descending (artery)
+Left Anterior Descending
 Large Bowel
 Low Density Lipoprotein
 Lupus Erythematosus
@@ -305,9 +304,9 @@ Nasopharyngeal Airway
 Nightly Peritoneal Dialysis
 Nothing By Mouth
 Not Physically Qualified
-Normal Saline (IV)
+Normal Saline
 Nonsteroidal Anti-inflammatory Drug
-Normal Sinus Rythym (cardiac)
+Normal Sinus Rythym
 NasoTracheal
 Neural Tube Defect
 Nausea & Vomiting
@@ -422,13 +421,11 @@ Sexually Transmitted Disease
 Somatotropic Hormone
 Short Term Memory
 Stress Urinary Incontinence
-Stress Urinary Incontinence
 Systemic Vascular Resistance
 Supra-Ventricular Tachycardia
 Symptoms
 Surgery
 Seizure
-Triiodothyronine
 Triiodothyronine
 Thyroxine
 Tuberculosis/Trouble Breathing

@@ -35,11 +35,11 @@ def new_queryt():
     existy = Dictionary.query.filter_by(id=1).first()
     if existy is None:
         def insert_initial_dict():
-            print(os.getcwd())
+            #print(os.getcwd())
             dict_file = os.path.join(os.getcwd(), 'flaskblog/static/termin.txt')
             fh = open(dict_file)
             for line in fh:
-                print(1, existy)
+                #print(1, existy)
                 termo = Dictionary(terminology=line)
                 db.session.add(termo)
             db.session.commit()
@@ -58,12 +58,12 @@ def new_queryt():
 
 
 @app.route("/egg/<sterm>/<termdata>", methods=['GET'])
-def egg(sterm,termdata):
-    inp(sterm,termdata)
+def egg(sterm, termdata):
+    inp(sterm, termdata)
     return redirect(url_for('home'))
 
 
-def inp(termdata,oterm = None):
+def inp(termdata, oterm=None):
     search_term = termdata
     search_term_split = search_term.split()
     enum = 0
@@ -75,7 +75,7 @@ def inp(termdata,oterm = None):
     fword = search_term
     if len(search_term_split) < 2 and validacr(search_term):
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(search_term[0])).all()
-        print(potential_full)
+        #print(potential_full)
 
         fword, valid, lfmatches = checktings(search_term, potential_full)
         if oterm:
@@ -84,11 +84,11 @@ def inp(termdata,oterm = None):
             lfmatches = ", ".join(lfmatches)
 
         abstracts = get_pubmed(fword)
-        print("valid",valid)
+        #print("valid",valid)
 
     else:
         abstracts = get_pubmed(search_term)
-        print("invalid")
+        #print("invalid")
 
     # for word in search_term_split:
     #     print(word)
@@ -115,29 +115,35 @@ def inp(termdata,oterm = None):
         counter = 0
         hits = 0
         acr_hits = []
+        acr_miss = []
         for sentence in sentences:
 
             if " (" in sentence and ")" in sentence:
                 # print(sentence)
                 # print(extractpairs(sentence, fword))
 
-                counter_temp, hits_temp, acr_list_temp = extractpairs(sentence, fword)
+                counter_temp, misses_temp, hits_temp, acr_list_temp = extractpairs(sentence, fword)
                 counter = counter + counter_temp
                 hits = hits + hits_temp
-                print(acr_list_temp)
+                #print(acr_list_temp)
+                temp_hits =[]
+                acr_miss.extend(misses_temp)
                 for word in acr_list_temp:
-                    if word not in acr_hits:
+                    if word.lower() not in temp_hits:
                         acr_hits.append(word)
+                for hit in acr_hits:
+                        temp_hits.append(hit.lower())
                 # acr_hits.extend(acr_list_temp)
-                print(hits, " : ", counter, " : ", acr_hits)
+                #print(hits, " : ", counter, " : ", acr_hits)
                 # percentmatch = ('%.2s' % str(hits / counter * 100))
                 if counter > 100:
                     counter = "99+"
                 if hits > 100:
                     hits = "99+"
                 percentmatch = str(hits) + "/" + str(counter)
+
         if acr_hits:
-            if search_term in acr_hits:
+            if search_term.lower() in temp_hits:
                 present = True
             else:
                 present = False
@@ -148,22 +154,6 @@ def inp(termdata,oterm = None):
     db.session.add(queryt)
     db.session.commit()
     flash('Your query has been created!', 'success')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def extractpairs(sent, prelong="None"):
@@ -224,7 +214,7 @@ def extractpairs(sent, prelong="None"):
 
         if len(acrw) > 2 or len(sterm) > len(lterm):
             lterm = sterm
-            print(termw)
+            #print(termw)
             if len(termw)>0:
                 sterm = termw[-1]
         # print(sterm)
@@ -240,22 +230,23 @@ def extractpairs(sent, prelong="None"):
         if prelong != "None":
             lterm = prelong
         if validacr(sterm):
-            lterm = (matchPair(sterm, lterm,prelong))
+            lterm = (matchPair(sterm, lterm, prelong))
             counter = counter + 1
-            sterm_list.append(sterm)
             if not lterm == "None":
                 hits = hits + 1
                 hit_list.append(sterm)
+            else:
+                sterm_list.append(sterm)
 
         # print("hi ",lterm, "no ",sterm)
         # return lterm, sterm
         # print(pclose)
         sent = sent[pclose:]
 
-        print("counter: ", counter, "hits: ", hits)
-        print("Short FORM: ", sterm," & Long :" ,lterm)
-        print("done")
-    return counter, hits, hit_list
+        #print("counter: ", counter, "hits: ", hits)
+        #print("Short FORM: ", sterm," & Long :" ,lterm)
+        #print("done")
+    return counter, sterm_list, hits, hit_list
 
     # except Exception:
     #    print ("Not applicable")
@@ -306,10 +297,10 @@ def checktings(word, potential_full):
     compmatches = []
     for term in potential_full:
         if word.lower() in term.terminology.lower():
-            print("INSIDEMEAHHH")
+            #print("INSIDEMEAHHH")
             return word, False, None
         if findBestLF(word, term.terminology):
-            print("NOT INSIDE ME AHAH")
+            #print("NOT INSIDE ME AHAH")
             compmatches.append(term.terminology)
             match = True
     if match:
@@ -338,7 +329,7 @@ def findBestLF(SF, LF, prelong="None"):
                     while lIndex > 0:
                         # print(LF[lIndex].lower(),currChar)
                         if LF[lIndex].lower() == currChar and LF[lIndex - 1] == " ":
-                            print(LF[lIndex:(len(LF))], ":", LF[1:])
+                            #print(LF[lIndex:(len(LF))], ":", LF[1:])
                             if prelong != "None" and LF[lIndex:(len(LF))] == LF[1:]:
                                 return LF[lIndex:(len(LF))]
                             if prelong == "None":
@@ -353,8 +344,8 @@ def findBestLF(SF, LF, prelong="None"):
 
 
 def validacr(acr):
-    x =(any(c.isalpha() for c in acr) and 2 < len(acr) < 10 and (acr[0].isalpha() or acr[0].isdigit()))
-    print("VALID : ", x, ": ",acr)
+    x = (any(c.isalpha() for c in acr) and 2 < len(acr) < 10 and (acr[0].isalpha() or acr[0].isdigit()))
+    #print("VALID : ", x, ": ", acr)
     #print("x : " ,x)
     return x
 
@@ -378,7 +369,7 @@ def get_pubmed(term):
     abstract ="N/A"
     for article in results:
         abstract = article.abstract
-        print(abstract)
+        #print(abstract)
         if abstract:
             if abstracts == "":
                 abstracts = abstract
@@ -398,6 +389,23 @@ def queryt(queryt_id):
         lfmatches = queryt.lfmatches.split(", ")
     if queryt.acrmatches:
         acrmatches = queryt.acrmatches.split(", ")
+
+        # highlightabs = queryt.content.split()
+        # x = 0
+        # while x < len(highlightabs):
+        #     if "(" in highlightabs[x] and ")" in highlightabs[x]:
+        #         for term in queryt.acrmatches:
+        #             if term in highlightabs[x]:
+        #                 (highlightabs[x])
+        #                 highlightabs[x] = "<mark>" + highlightabs[x] + "</mark>"
+        #     x = x + 1
+        # content = highlightabs
+
+
+
+
+
+
     return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches)
 
 
