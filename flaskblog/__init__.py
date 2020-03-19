@@ -1,19 +1,19 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import event, DDL
-import nltk
-from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
+from flaskblog.config import Config
 
-from sqlalchemy_utils import functions
+db = SQLAlchemy()
 
 
-app = Flask(__name__)
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+    db.init_app(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-app.config['SECRET_KEY'] = 'f33eb5d45b89dd2e5c07a75c96835848'
-db = SQLAlchemy(app)
+    from flaskblog.queries.routes import queries
+    from flaskblog.main.routes import main
+    app.register_blueprint(queries)
+    app.register_blueprint(main)
 
 
-
-from flaskblog import routes
+    return app

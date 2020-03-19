@@ -57,7 +57,7 @@
                       {% if lfmatches %}
                           <ul class="list-group list-group-flush">
                             {% for match in lfmatches %}
-                                <li class = "list-group-item"><a class="nav-item nav-link text-align-left" href="{{ url_for('egg', sterm=queryt.origterm , termdata=match) }}"><small> {{ match }} </small></a></li>
+                                <li class = "list-group-item"><a class="nav-item nav-link text-align-left" href="{{ url_for('queries.egg', sterm=queryt.origterm , termdata=match) }}"><small> {{ match }} </small></a></li>
                             {% endfor %}
                           </ul>
                       {% else %}

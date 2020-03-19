@@ -22,7 +22,7 @@
                     <small class="text-muted"> | </small>
                     <small class="text-muted">{{ queryt.date_posted.strftime('%Y-%m-%d') }}</small>
                 </div>
-                <h2><a class="article-title" href="{{ url_for('queryt', queryt_id=queryt.id) }}">{{ queryt.term }}</a></h2>
+                <h2><a class="article-title" href="{{ url_for('queries.queryt', queryt_id=queryt.id) }}">{{ queryt.term }}</a></h2>
                 <p class="article-home">{{ queryt.content }}</p>
                 <p class="cont-dash">. . .</p>
             </div>

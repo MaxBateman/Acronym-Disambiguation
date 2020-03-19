@@ -42,8 +42,6 @@ Acute Tubular Necrosis
 Both Ears
 Atrio-Ventricular
 Atrio-Ventricular Block
-Atrio-ventricular Block
-Below Knee
 Below Knee
 Breathing Apparatus
 Blood Alcohol Content
@@ -55,7 +53,6 @@ Blood Glucose Level
 Brain Injury
 Twice A Day
 Bilateral
-Bilateral
 Bowel Movement Or Breast Milk
 Body Mass Index
 Blood Pressure
@@ -65,7 +62,6 @@ Biologic Response Modifiers
 Bathroom Privileges
 Body Restorative Therapy
 Bowel Sounds
-Body Surface Area
 Body Surface Area
 Breast Self Examination
 Bodily Substance Isolation
@@ -83,7 +79,6 @@ Conscious
 Continuous Ambulatory Peritoneal Dialysis
 Computerized Tomography Scan
 Complete Blood Count
-Common Bile Duct
 Common Bile Duct
 Clinical Breast Examination
 Capillary Blood Glucose
@@ -104,7 +99,6 @@ Circulation
 Central Nervous System
 Cardiac Output
 Chronic Obstructive Airways Disease
-Chronic Obstructive Pulmonary Disease
 Chronic Obstructive Pulmonary Disease
 Chest Pain
 Continuous Positive Airway Pressure
@@ -143,7 +137,6 @@ Deep Tendon Reflex
 Deep Vein Thrombosis
 Diagnosis
 Epstein-Barr Virus
-Epstein-Barr Virus
 Extracellular Fluid
 Electro CardioGram
 ElectroEncephaloGram
@@ -153,7 +146,6 @@ Electromyogram
 Esophageal Obturator Airway
 Emergency Room
 Endoscopic Retrograde Cholangiopancreatography
-End Stage Renal Disease
 End Stage Renal Disease
 Endotracheal Tube
 & R Force And Rhythm
@@ -169,7 +161,6 @@ Fever Of Unknown Origin
 Fluid Volume Deficit
 Fracture
 Fracture
-Gallbladder
 Gallbladder
 Gestational Diabetes Melitus
 Gastroesophageal Reflux Disease
@@ -234,7 +225,6 @@ IntraUterine Device
 Intravenous
 IV Drug Abuse/Abuser
 In Vitro Fertilization
-In Vitro Fertilization
 Intravenous Pyelography
 Journal Of The American Medical Association
 Jugular Vein Distention
@@ -278,7 +268,6 @@ Mucous Membrane
 Monoclonal Antibodies
 Milk Of Magnesia
 Mental Retarded/Developmentally Disabled
-Mental Retarded/developmentally Disabled
 Magnetic Resonance Imaging
 Modified Radical Mastectomy
 Multiple Sclerosis
@@ -320,7 +309,6 @@ Oropharyngeal Airway
 Open Reduction Internal Fixation
 Left Eye
 Both Eyes
-Para-Aminobenzoic Acid
 Para-aminobenzoic Acid
 Peripheral Arterial Disease
 After Meals
@@ -332,8 +320,6 @@ Patent Ductus Arteriosus
 Pervasive Development Disorder
 Physician's Desk Reference
 Pulmonary Edema / Embolism
-Percutaneous Endoscopic Gastrostomy
-Percutaneous Endoscopic Gastrostomy
 Percutaneous Endoscopic Jejunostomy
 Pupils Equal, Round, Reactive To Light
 Pupils Equal, Round, Reactive To Light And Accommodation
@@ -374,12 +360,10 @@ Peripheral Vascular Disease
 PARTIAL WEIGHT BEARING
 Pneumothorax
 Everyday
-Everyday
 Four Times A Day
 Quantity Not Sufficient
 Every Other Day
 Quantity Sufficient
-Rheumatoid Arthritis
 Rheumatoid Arthritis
 Reactive Airway Disease
 Radioactive Iodine
@@ -391,7 +375,6 @@ Rheumatic Heart Disease
 Right Internal Jugular
 Right Lower Quadrant
 Respiratory Movement
-Respiratory Movement
 Range Of Motion
 Review Of Systems
 Right Subclavian
@@ -399,7 +382,6 @@ Regular Sinus Rhythym
 Respiratory Syncitial Virus
 Right Upper Quadrant
 Prescription
-Signs & Symptoms
 Signs & Symptoms
 Spontaneous Abortion
 Supplied Air Breathing Apparatus
@@ -436,7 +418,6 @@ Turn Cough Deep Breathe
 Thrombo-Embolism Deterrent
 Transesophageal Puncture
 Total Hip Replacement
-Total Hip Replacement
 Transient Ischemic Attack
 Total Iron Binding Capacity
 Three Times A Day
@@ -447,19 +428,15 @@ Tumor Necrosis Factor
 Tumor Node Metastases
 Too Numerous To Mention
 Tuberculin Precipitation
-Tuberculin Precipitation
 Total Parenteral Nutrition
 Temperature
 Transient Tachypnea Of The Newborn
 Thrombotic Thrombocytopenia Purpura
 Trans-urethral Prostatic Resection
 Trans-Urethral Resection Of The Prostate
-Trans-urethral Resection Of The Prostate
-Trans-Urethral Resection Of The Prostate
 Touch Weight Bear
 Tap Water Enema
 Treatment
-Urinalysis
 Urinalysis
 Upper Airway Obstruction
 Usual Body Weight
@@ -470,8 +447,6 @@ URinary Incontinence
 Ultrasonic
 Urinary Tract Infection
 Ureterovesical Junction
-Ureterovesical Junction
-Visual Acuity
 Visual Acuity
 Vaginal Birth After Caeserean
 Ventricular Fibrillation
@@ -483,8 +458,6 @@ Vital Signs Absent
 Ventricular Septal Defect
 Ventricular Tachycardia
 Vessel Wall
-Vessel Wall
-Wheelchair
 Wheelchair
 White Blood Cell
 Well Developed

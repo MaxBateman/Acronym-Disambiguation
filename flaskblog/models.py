@@ -1,5 +1,6 @@
 from datetime import datetime
 from flaskblog import db
+#from flask import current_app
 
 
 class QueryT(db.Model):
