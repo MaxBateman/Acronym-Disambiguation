@@ -49,9 +49,9 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/flaskblog/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
-    <property name="settings.editor.selected.configurable" value="PyConsoleConfigurable.Python Console" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -70,14 +70,15 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\mxdba\PycharmProjects\blogflask" />
+      <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog\static" />
+      <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog\static" />
       <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog" />
       <recent name="C:\Users\mxdba\PycharmProjects\blogflask" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog\static" />
-      <recent name="C:\Users\mxdba\PycharmProjects\blogflask\flaskblog" />
     </key>
   </component>
   <component name="RunManager" selected="Python.app">
@@ -203,7 +204,10 @@
       <workItem from="1584643626983" duration="133000" />
       <workItem from="1584643846639" duration="597000" />
       <workItem from="1584644460167" duration="2210000" />
-      <workItem from="1584646681539" duration="707000" />
+      <workItem from="1584646681539" duration="981000" />
+      <workItem from="1584695688311" duration="883000" />
+      <workItem from="1584702506322" duration="3300000" />
+      <workItem from="1584706030152" duration="48000" />
     </task>
     <servers />
   </component>
@@ -231,38 +235,38 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="1141" y="356" key="EnvironmentVariablesDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1584646668378" />
-    <state x="1167" y="283" key="FileChooserDialogImpl" timestamp="1583416982734">
+    <state x="1167" y="283" key="FileChooserDialogImpl" timestamp="1584706073046">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="1167" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1583416982734" />
-    <state width="914" height="190" key="GridCell.Tab.0.bottom" timestamp="1584647852979">
+    <state x="1167" y="283" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1584706073046" />
+    <state width="914" height="190" key="GridCell.Tab.0.bottom" timestamp="1584648151957">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="190" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1584647852979" />
-    <state width="914" height="190" key="GridCell.Tab.0.center" timestamp="1584647852979">
+    <state width="914" height="190" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1584648151957" />
+    <state width="914" height="190" key="GridCell.Tab.0.center" timestamp="1584648151957">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="190" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1584647852979" />
-    <state width="914" height="190" key="GridCell.Tab.0.left" timestamp="1584647852979">
+    <state width="914" height="190" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1584648151957" />
+    <state width="914" height="190" key="GridCell.Tab.0.left" timestamp="1584648151957">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="190" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1584647852979" />
-    <state width="914" height="190" key="GridCell.Tab.0.right" timestamp="1584647852979">
+    <state width="914" height="190" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1584648151957" />
+    <state width="914" height="190" key="GridCell.Tab.0.right" timestamp="1584648151957">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="914" height="190" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1584647852979" />
+    <state width="914" height="190" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1584648151957" />
     <state width="196" height="457" key="HiddenNamespacesPopup" timestamp="1584187767775">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="196" height="457" key="HiddenNamespacesPopup/0.0.1920.1050@0.0.1920.1050" timestamp="1584187767775" />
-    <state x="908" y="240" width="998" height="708" key="SettingsEditor" timestamp="1584646669319">
+    <state x="908" y="240" width="998" height="708" key="SettingsEditor" timestamp="1584733523185">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="908" y="240" width="998" height="708" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1584646669319" />
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1584646699081">
+    <state x="908" y="240" width="998" height="708" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1584733523185" />
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog" timestamp="1584706038316">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1584646699081" />
+    <state x="656" y="349" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1584706038316" />
     <state x="1093" y="260" width="607" height="536" key="find.popup" timestamp="1583607292363">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -285,6 +289,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/blogflask$routes.coverage" NAME="routes Coverage Results" MODIFIED="1583755666867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/flaskblog" />
-    <SUITE FILE_PATH="coverage/blogflask$app.coverage" NAME="app Coverage Results" MODIFIED="1584646745077" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/blogflask$app.coverage" NAME="app Coverage Results" MODIFIED="1584733549760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
