@@ -37,7 +37,7 @@ def new_queryt():
          #   check_match(abstracts, term)
         flash('Your query has been created!', 'success')
         return redirect(url_for('main.home'))
-    return render_template('create_QueryT.html', title='New Query',
+    return render_template('create_queryt.html', title='New Query',
                            form=form, legend='New Query')
 
 

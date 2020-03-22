@@ -8,7 +8,7 @@ main = Blueprint("main", __name__)
 @main.route("/")
 @main.route("/home")
 def home():
-    #db.create_all()
+    db.create_all()
     queriest = QueryT.query.all()
     queriest = queriest[::-1]
     #tick_file = os.path.join(os.getcwd(), 'flaskblog/static/tick.png')
