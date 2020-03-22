@@ -43,10 +43,14 @@ h1, h2, h3, h4, h5, h6 {
   border: 5px solid #666;
   margin: 10px;
 }
+div.circlehold{
+  padding-right:10px;
+  padding-left: 10px;
+  width: 20em;
+}
 mark.acrmatch{
   background-color: darkseagreen;
 }
-
 mark.acr{
   background-color: darkgrey;
 }

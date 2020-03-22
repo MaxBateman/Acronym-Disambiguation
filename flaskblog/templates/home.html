@@ -27,12 +27,13 @@
                 <p class="cont-dash">. . .</p>
             </div>
 {#            <img class ="align-self-center mr-3" src ="{{ url_for('static',filename=picture_file)}}">#}
-
-            {% if queryt.origtermpresent %}
-                <div class = "align-self-center circleg"><p></p>{{  queryt.percentmatch }}</div>
-            {% else %}
-                <div class = "align-self-center circle"><p></p>{{  queryt.percentmatch }}</div>
-            {% endif %}
+            <div>
+                {% if queryt.origtermpresent %}
+                    <div class = "align-self-center circleg"><p></p>{{  queryt.percentmatch }}</div>
+                {% else %}
+                    <div class = "align-self-center circle"><p></p>{{  queryt.percentmatch }}</div>
+                {% endif %}
+            </div>
 
 
         </article>

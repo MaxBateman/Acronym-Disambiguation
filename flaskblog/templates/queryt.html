@@ -30,65 +30,65 @@
       </article>
         <div class="col-md-4">
             <div class="content-section">
-            <h3 class="text-center">Analytics bar</h3>
-            <div class="row d-flex justify-content-center">
-              {% if queryt.origtermpresent %}
-                <div class="circleg "><p></p>{{  queryt.percentmatch }}</div>
-              {% else %}
-                <div class="circle"><p></p>{{  queryt.percentmatch }}</div>
-              {% endif %}
+                <h3 class="text-center">Analytics bar</h3>
+                <div class="row d-flex justify-content-center">
+                  {% if queryt.origtermpresent %}
+                    <div class="circleg "><p></p>{{  queryt.percentmatch }}</div>
+                  {% else %}
+                    <div class="circle"><p></p>{{  queryt.percentmatch }}</div>
+                  {% endif %}
+                </div>
+                  <ul class="list-group text-center">
+                      <li class="list-group-item list-group-item-light">Original Acronym Matched:
+                        {% if queryt.origtermpresent %}
+                            {{ queryt.origtermpresent }}
+                        {% else %}
+                            {{ queryt.origtermpresent }}
+                        {% endif %}
+                      </li>
+
+
+                      <li class="list-group-item list-group-item-light">
+                          <a data-toggle="collapse" data-target="#collapseOne" href="collapseOne">
+                              Potential Other Full Forms
+                          </a>
+                      </li>
+                      <div id = "collapseOne" class="panel-collapse collapse">
+
+                          {% if lfmatches %}
+                              <ul class="list-group list-group-flush">
+                                {% for match in lfmatches %}
+                                    <li class = "list-group-item"><a class="nav-item nav-link text-align-left" href="{{ url_for('queries.egg', sterm=queryt.origterm , termdata=match) }}"><small> {{ match }} </small></a></li>
+                                {% endfor %}
+                              </ul>
+                          {% else %}
+                              <ul class="list-group list-group-flush">
+                                    <li class = "list-group-item"><small>N/A</small></li>
+                              </ul>
+                          {% endif %}
+                      </div>
+                      <li class="list-group-item list-group-item-light">
+                          <a data-toggle="collapse" data-target="#collapseTwo" href="collapseTwo">
+                              Potential Acronyms For This Full Form
+                          </a>
+                      </li>
+                      <div id = "collapseTwo" class="panel-collapse collapse">
+
+                          {% if acrmatches %}
+                              <ul class="list-group list-group-flush">
+                                {% for match in acrmatches %}
+                                    <li class = "list-group-item"><a class="nav-item nav-link text-align-left" href=""><small> {{ match }} </small></a></li>
+                                {% endfor %}
+                              </ul>
+                          {% else %}
+                              <ul class="list-group list-group-flush">
+                                    <li class = "list-group-item"><small>N/A</small></li>
+                              </ul>
+                          {% endif %}
+                      </div>
+                  </ul>
+                </p>
             </div>
-              <ul class="list-group text-center">
-                  <li class="list-group-item list-group-item-light">Original Acronym Matched:
-                    {% if queryt.origtermpresent %}
-                        {{ queryt.origtermpresent }}
-                    {% else %}
-                        {{ queryt.origtermpresent }}
-                    {% endif %}
-                  </li>
-
-
-                  <li class="list-group-item list-group-item-light">
-                      <button class = "btn btn-link collapsed text-left btn-block" type = "button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Potential Other Full Forms
-                      </button>
-                  </li>
-                  <div id = "collapseOne" class="collapse">
-
-                      {% if lfmatches %}
-                          <ul class="list-group list-group-flush">
-                            {% for match in lfmatches %}
-                                <li class = "list-group-item"><a class="nav-item nav-link text-align-left" href="{{ url_for('queries.egg', sterm=queryt.origterm , termdata=match) }}"><small> {{ match }} </small></a></li>
-                            {% endfor %}
-                          </ul>
-                      {% else %}
-                          <ul class="list-group list-group-flush">
-                                <li class = "list-group-item"><small>N/A</small></li>
-                          </ul>
-                      {% endif %}
-                  </div>
-                  <li class="list-group-item list-group-item-light">
-                      <button class = "btn btn-link collapsed text-left btn-block" type = "button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                          Potential Acronyms For This Full Form
-                      </button>
-                  </li>
-                  <div id = "collapseTwo" class="collapse">
-
-                      {% if acrmatches %}
-                          <ul class="list-group list-group-flush">
-                            {% for match in acrmatches %}
-                                <li class = "list-group-item"><a class="nav-item nav-link text-align-left" href=""><small> {{ match }} </small></a></li>
-                            {% endfor %}
-                          </ul>
-                      {% else %}
-                          <ul class="list-group list-group-flush">
-                                <li class = "list-group-item"><small>N/A</small></li>
-                          </ul>
-                      {% endif %}
-                  </div>
-              </ul>
-            </p>
-          </div>
         </div>
       </div>
     </main>
