@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, flash
+from flask import Blueprint, render_template, url_for, redirect, flash, Markup
 from flaskblog import db
 from flaskblog.queries.forms import QuerytForm
 from flaskblog.models import QueryT, Dictionary
@@ -56,16 +56,26 @@ def addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, 
     db.session.add(queryt)
     db.session.commit()
 
+
 @queries.route("/queryt/<int:queryt_id>")
 def queryt(queryt_id):
     queryt = QueryT.query.get_or_404(queryt_id)
     lfmatches = None
     acrmatches = None
+    content = queryt.content
     if queryt.lfmatches:
         lfmatches = queryt.lfmatches.split(", ")
+    acrreplace = []
     if queryt.acrmatches:
         acrmatches = queryt.acrmatches.split(", ")
 
+        for term in acrmatches:
+            termb = "("+term+")"
+            if term.lower() == queryt.origterm.lower():
+                content = content.replace(termb, '<mark class="acrmatch">' + termb + '</mark>')
+            else:
+                content = content.replace(termb, '<mark class="acr">'+termb+'</mark>' )
+    content = Markup(content)
         # highlightabs = queryt.content.split()
         # x = 0
         # while x < len(highlightabs):
@@ -77,5 +87,5 @@ def queryt(queryt_id):
         #     x = x + 1
         # content = highlightabs
 
-    return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches)
+    return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=content)
 

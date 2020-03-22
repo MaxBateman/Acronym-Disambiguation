@@ -310,7 +310,7 @@ def get_pubmed(term):
     results = pubmed.query(term, max_results=5)
     counter = 0
     abstracts =""
-    abstract ="N/A"
+    abstract = "N/A"
     for article in results:
         abstract = article.abstract
         #print(abstract)
