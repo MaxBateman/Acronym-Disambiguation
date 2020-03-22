@@ -43,8 +43,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 5px solid #666;
   margin: 10px;
 }
-mark{
+mark.acrmatch{
   background-color: darkseagreen;
+}
+mark.acr{
+  background-color: darkgrey;
 }
 .circleg {
   width: 5em;
