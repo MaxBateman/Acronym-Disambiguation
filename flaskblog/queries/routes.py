@@ -32,7 +32,7 @@ def new_queryt():
         if form.term.data[0] == " ":
             tempterm = form.term.data.strip()
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
-        search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = (get_abstracts(form.term.data, potential_full))
+        search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = (inp(form.term.data, potential_full))
         addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches)
         #for term in fword:
          #   check_match(abstracts, term)
@@ -45,7 +45,7 @@ def new_queryt():
 @queries.route("/egg/<sterm>/<termdata>", methods=['GET'])
 def egg(sterm, termdata):
     potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(sterm[0])).all()
-    search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = (get_abstracts(sterm, potential_full, termdata))
+    search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = (inp(sterm, potential_full, termdata))
     addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches)
     flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
@@ -91,10 +91,4 @@ def queryt(queryt_id):
     return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=content)
 
 
-@celery.task
-def get_abstracts(sterm, potential_full, termdata=None):
-    out = inp(sterm, potential_full, termdata)
-    time.sleep(10)
-    print("ok")
-    return out
 
