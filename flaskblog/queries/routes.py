@@ -3,6 +3,7 @@ from flaskblog import db, celery
 from flaskblog.queries.forms import QuerytForm
 from flaskblog.models import QueryT, Dictionary
 from flaskblog.queries.utils import *
+import time
 import os
 
 queries = Blueprint('queries',__name__)
