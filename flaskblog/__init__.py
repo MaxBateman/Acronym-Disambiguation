@@ -4,7 +4,8 @@ from flaskblog.config import Config
 from celery import Celery
 db = SQLAlchemy()
 
-
+r = redis.Redis()
+q = Queue(is_async=False, connection=r)
 
 def create_app(config_class=Config):
     app = Flask(__name__)
