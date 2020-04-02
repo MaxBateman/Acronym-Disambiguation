@@ -1,10 +1,11 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, Markup
-from flaskblog import db, celery
+from flaskblog import db
 from flaskblog.queries.forms import QuerytForm
 from flaskblog.models import QueryT, Dictionary
 from flaskblog.queries.utils import *
 import time
 import os
+from flaskblog import q
 
 queries = Blueprint('queries',__name__)
 
@@ -32,7 +33,7 @@ def new_queryt():
         if form.term.data[0] == " ":
             tempterm = form.term.data.strip()
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
-        search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = (inp(form.term.data, potential_full))
+        qt = q.enqueue(get_inp, form.term.data, potential_full)
         addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches)
         #for term in fword:
          #   check_match(abstracts, term)
@@ -51,9 +52,8 @@ def egg(sterm, termdata):
     return redirect(url_for('main.home'))
 
 
-def addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches):
-    queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
-                    origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches)
+def addResult(queryt):
+    
     db.session.add(queryt)
     db.session.commit()
 
@@ -90,5 +90,12 @@ def queryt(queryt_id):
 
     return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=content)
 
+
+    def get_inp(data, potential_full, termdata=None):
+        search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
+        time.sleep(0.35)
+        queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
+                    origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches)
+        return queryt
 
 
