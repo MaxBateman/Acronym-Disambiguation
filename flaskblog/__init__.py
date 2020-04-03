@@ -2,11 +2,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flaskblog.config import Config
 import redis
-from rq import Queue
+from flask_rq2 import RQ
 db = SQLAlchemy()
 
-r = redis.Redis()
-q = Queue(connection = r)
+rq = RQ()
 
 def create_app(config_class=Config):
     app = Flask(__name__)
@@ -15,6 +14,7 @@ def create_app(config_class=Config):
     from flaskblog.queries.routes import queries
     from flaskblog.main.routes import main
     app.register_blueprint(queries)
+    rq.init_app(app)
     app.register_blueprint(main)
 
 

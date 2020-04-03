@@ -5,7 +5,7 @@ from flaskblog.models import QueryT, Dictionary
 from flaskblog.queries.utils import *
 import time
 import os
-from flaskblog import q, r
+from flaskblog import rq
 
 queries = Blueprint('queries',__name__)
 
@@ -33,7 +33,7 @@ def new_queryt():
         if form.term.data[0] == " ":
             tempterm = form.term.data.strip()
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
-        q.enqueue(get_inp, form.term.data, potential_full)
+        get_inp.queue(form.term.data, potential_full)
         
         #for term in fword:
          #   check_match(abstracts, term)
@@ -84,7 +84,7 @@ def queryt(queryt_id):
 
     return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=content)
 
-
+@rq.job
 def get_inp(data, potential_full, termdata=None):
     time.sleep(10)
     search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
