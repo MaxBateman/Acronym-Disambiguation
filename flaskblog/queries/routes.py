@@ -5,7 +5,7 @@ from flaskblog.models import QueryT, Dictionary
 from flaskblog.queries.utils import *
 import time
 import os
-from flaskblog import q
+from flaskblog import q, r
 
 queries = Blueprint('queries',__name__)
 
@@ -34,7 +34,7 @@ def new_queryt():
             tempterm = form.term.data.strip()
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
         qt = q.enqueue(get_inp, form.term.data, potential_full)
-        addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches)
+        addResult(qt.result)
         #for term in fword:
          #   check_match(abstracts, term)
         flash('Your query has been created!', 'success')
@@ -91,11 +91,12 @@ def queryt(queryt_id):
     return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=content)
 
 
-    def get_inp(data, potential_full, termdata=None):
-        search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
-        time.sleep(0.35)
-        queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
+def get_inp(data, potential_full, termdata=None):
+    time.sleep(10)
+    search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
+    queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
                     origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches)
-        return queryt
+    print(queryt)
+    return queryt
 
 

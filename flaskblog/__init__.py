@@ -1,11 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flaskblog.config import Config
-from celery import Celery
+import redis
+from rq import Queue
 db = SQLAlchemy()
 
 r = redis.Redis()
-q = Queue(is_async=False, connection=r)
+q = Queue(connection = r, is_async=False)
 
 def create_app(config_class=Config):
     app = Flask(__name__)
