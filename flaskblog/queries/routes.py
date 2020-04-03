@@ -33,8 +33,8 @@ def new_queryt():
         if form.term.data[0] == " ":
             tempterm = form.term.data.strip()
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
-        qt = q.enqueue(get_inp, form.term.data, potential_full)
-        addResult(qt.result)
+        q.enqueue(get_inp, form.term.data, potential_full)
+        
         #for term in fword:
          #   check_match(abstracts, term)
         flash('Your query has been created!', 'success')
@@ -50,12 +50,6 @@ def egg(sterm, termdata):
     addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches)
     flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
-
-
-def addResult(queryt):
-    
-    db.session.add(queryt)
-    db.session.commit()
 
 
 @queries.route("/queryt/<int:queryt_id>")
@@ -96,7 +90,8 @@ def get_inp(data, potential_full, termdata=None):
     search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
     queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
                     origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches)
-    print(queryt)
+    db.session.add(queryt)
+    db.session.commit()
     return queryt
 
 

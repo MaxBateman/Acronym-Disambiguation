@@ -6,7 +6,7 @@ from rq import Queue
 db = SQLAlchemy()
 
 r = redis.Redis()
-q = Queue(connection = r, is_async=False)
+q = Queue(connection = r)
 
 def create_app(config_class=Config):
     app = Flask(__name__)
