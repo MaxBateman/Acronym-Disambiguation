@@ -35,6 +35,12 @@ def new_queryt():
             tempterm = form.term.data.strip()
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
         qt = get_inp.queue(form.term.data, potential_full)
+        counter =0
+        while qt.result != form.term.data and counter <5:
+            time.sleep(1)
+            print(qt.result)
+            print("wait")
+            counter = counter +1
         #qt = Job.fetch('form.term.data', rq)
         #print(qt.get_status())
         #c = False
@@ -42,7 +48,7 @@ def new_queryt():
         #    time.sleep(0.2)
         #    print(qt.get_status())
         
-        flash('You query has been created!', 'success')
+        flash('Query Successful', 'success')
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
@@ -99,5 +105,5 @@ def get_inp(data, potential_full, termdata=None):
                     origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches)
     db.session.add(queryt)
     db.session.commit()
-    return
+    return search_term
 
