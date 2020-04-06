@@ -1,5 +1,5 @@
-from flask import render_template, Blueprint, redirect, url_for
-from flaskblog import db
+from flask import render_template, Blueprint, redirect, url_for, session
+from flaskblog import db, sess
 from flaskblog.models import QueryT
 from sqlalchemy import event
 import time
@@ -11,7 +11,7 @@ main = Blueprint("main", __name__)
 #@event.listens_for(db.session, "after_commit")
 def home():
     db.create_all()
-    queriest = QueryT.query.all()
+    queriest = QueryT.query.filter_by(user_id=session.sid)
     queriest = queriest[::-1]
     #tick_file = os.path.join(os.getcwd(), 'flaskblog/static/tick.png')
     #if num matched > 0

@@ -13,6 +13,7 @@ class QueryT(db.Model):
     origtermpresent = db.Column(db.Boolean, nullable=False)
     acrmatches = db.Column(db.Text)
     lfmatches = db.Column(db.Text)
+    user_id = db.Column(db.String(50), nullable=False)
 
     def __repr__(self):
         return f"Post('{self.term}', '{self.date_posted}')"
