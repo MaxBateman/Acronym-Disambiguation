@@ -100,7 +100,6 @@ def get_inp(data, potential_full, user_id, termdata=None):
     time.sleep(0.35)
     search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
     print("done")
-    toot = session.sid
     queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
                     origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches, user_id=toot)
     db.session.add(queryt)
