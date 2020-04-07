@@ -13,7 +13,7 @@ def home():
     queriest = QueryT.query.filter_by(user_id=session.sid)
     queriest = queriest[::-1]
 
-    return render_template('home.html', queriest=queriest)
+    return render_template('home.html', queriest=queriest, active1="", active2="active")
 
 
 @main.route("/about")
