@@ -33,8 +33,9 @@ def new_queryt():
         tempterm = form.term.data
         if form.term.data[0] == " ":
             tempterm = form.term.data.strip()
+        user_id = session.sid
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
-        qt = get_inp.queue(form.term.data, potential_full)
+        qt = get_inp.queue(form.term.data, potential_full, user_id)
         counter =0
         while qt.result != form.term.data and counter <5:
             time.sleep(1)
@@ -94,7 +95,7 @@ def queryt(queryt_id):
 
 
 @rq.job
-def get_inp(data, potential_full, termdata=None):
+def get_inp(data, potential_full, user_id, termdata=None):
     time.sleep(0.35)
     search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
     print("done")
