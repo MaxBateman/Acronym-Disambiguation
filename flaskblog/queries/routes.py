@@ -58,8 +58,9 @@ def new_queryt():
 
 @queries.route("/egg/<sterm>/<termdata>", methods=['GET'])
 def egg(sterm, termdata):
+    user_id = session.sid
     potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(sterm[0])).all()
-    qt = get_inp.queue(sterm, potential_full, termdata)
+    qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     while qt.result != form.term.data and counter <5:
         time.sleep(1)
