@@ -59,8 +59,14 @@ def new_queryt():
 @queries.route("/egg/<sterm>/<termdata>", methods=['GET'])
 def egg(sterm, termdata):
     potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(sterm[0])).all()
-    search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = (inp(sterm, potential_full, termdata))
-    addResult(search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches)
+    qt = get_inp.queue(sterm, potential_full, termdata)
+    counter =0
+    while qt.result != form.term.data and counter <5:
+        time.sleep(1)
+        print(qt.result)
+        print("wait")
+        counter = counter +1
+    
     flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
 
@@ -84,18 +90,9 @@ def queryt(queryt_id):
             else:
                 content = content.replace(termb, '<mark class="acr">'+termb+'</mark>' )
     content = Markup(content)
-        # highlightabs = queryt.content.split()
-        # x = 0
-        # while x < len(highlightabs):
-        #     if "(" in highlightabs[x] and ")" in highlightabs[x]:
-        #         for term in queryt.acrmatches:
-        #             if term in highlightabs[x]:
-        #                 (highlightabs[x])
-        #                 highlightabs[x] = "<mark>" + highlightabs[x] + "</mark>"
-        #     x = x + 1
-        # content = highlightabs
 
     return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=content)
+
 
 @rq.job
 def get_inp(data, potential_full, user_id, termdata=None):
