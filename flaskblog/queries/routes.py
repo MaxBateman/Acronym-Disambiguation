@@ -49,7 +49,7 @@ def new_queryt():
         #    time.sleep(0.2)
         #    print(qt.get_status())
         
-        flash('Query Successful', 'success')
+        flash('Your query has been created!', 'success')
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
