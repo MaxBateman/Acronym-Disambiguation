@@ -17,8 +17,6 @@ def home():
         flash('Create a new query!', 'success')
     page = request.args.get('page', 1, type=int)
     queriest = queriest.order_by(QueryT.date_posted.desc()).paginate(page=page, per_page=5)
-    for query in queriest:
-    	print query
 
     return render_template('home.html', queriest=queriest, active1="active", active2="")
 
