@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, redirect, url_for, session
+from flask import render_template, Blueprint, redirect, url_for, session, request
 from flaskblog import db, sess
 from flaskblog.models import QueryT
 from sqlalchemy import event
