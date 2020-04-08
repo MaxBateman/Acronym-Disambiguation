@@ -64,6 +64,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: mediumslateblue;
   border-color:mediumslateblue;
   margin-right: 5px;
+  margin-left:5px;
 }
 div.circlehold{
   padding-right:10px;

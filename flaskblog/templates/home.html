@@ -47,25 +47,28 @@
 
             </article>
         {% endfor %}
-        {% for page_num in queriest.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-              {% if page_num %}
-                  {% if queriest.page == page_num %}
-                      {% if active2 %}
-                          <a id = "current" class="btn btn-info mb-4" href="{{ url_for('main.home_all', page=page_num) }}">{{ page_num }}</a>
+        <div class="d-flex justify-content-center col-md-12">
+            {% for page_num in queriest.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                  {% if page_num %}
+                      {% if queriest.page == page_num %}
+                          {% if active2 %}
+                              <a id = "current" class="btn btn-info mb-4" href="{{ url_for('main.home_all', page=page_num) }}">{{ page_num }}</a>
+                          {% else %}
+                              <a id = "current" class="btn btn-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+                          {% endif %}
                       {% else %}
-                          <a id = "current" class="btn btn-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+                          {% if active2 %}
+                              <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home_all', page=page_num) }}">{{ page_num }}</a>
+                          {% else %}
+                              <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+                          {% endif %}
                       {% endif %}
                   {% else %}
-                      {% if active2 %}
-                          <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home_all', page=page_num) }}">{{ page_num }}</a>
-                      {% else %}
-                          <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
-                      {% endif %}
+                        ...
                   {% endif %}
-              {% else %}
-                    ...
-              {% endif %}
-          {% endfor %}
+            {% endfor %}
+        </div>
+
       </div>
     </main>
 {% endblock content %}
