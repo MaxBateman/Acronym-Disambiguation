@@ -47,6 +47,14 @@ h1, h2, h3, h4, h5, h6 {
   margin: 10px;
 }
 
+footer{
+  position: absolute;
+  left:0;
+  bottom:0;
+  right:0;
+  height:50px;
+}
+
 .btn-info:hover, .btn-outline-info:hover{
   background-color: #6c757d;
   border-color: #6c757d;
@@ -59,6 +67,8 @@ h1, h2, h3, h4, h5, h6 {
 .btn-outline-info{
   border-color:#6c757d;
   color:#6c757d;
+  margin-right: 5px;
+  margin-left:5px;
 }
 .btn-info{
   background-color: mediumslateblue;
@@ -66,6 +76,18 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 5px;
   margin-left:5px;
 }
+.container-fluid{
+  position: absolute;
+  top: 3.5em;
+  bottom: 50px;
+  right: 0;
+  left: 0;
+  overflow-y: auto;
+}
+#foot{
+  margin-top: 5px !important;
+}
+
 div.circlehold{
   padding-right:10px;
   padding-left: 10px;
