@@ -1,54 +1,56 @@
 {% extends "layout.html" %}
 {% block content %}
-    <main role="main" class="container col-md-10">
-      <div class="row">
-        <div class="col-md-12">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
-          {% endwith %}
-        </div>
-        <div class="d-flex flex-row-reverse col-md-12">
-            <div id="toggler" class="btn-group btn-group-toggle p-2">
-                <label class="btn btn-secondary {{ active1 }}" onclick="location.href='{{ url_for('main.home') }}';">
-                    <input type="radio" name="options" id="option1" autocomplete="off"> Recent
-                </label>
-                <label class="btn btn-secondary {{ active2 }}" onclick="location.href='{{ url_for('main.home_all') }}';">
-                    <input type="radio" name="options" id="option2" autocomplete="off"> All
-                </label>
-            </div>
-        </div>
-        {% for queryt in queriest.items %}
-            <article class="media content-section col-md-12">
-                <div class="media-body">
-                    <div class="article-metadata">
-                        <small class="text-muted">{{ queryt.origterm }}</small>
-                        <small class="text-muted"> | </small>
-                        <small class="text-muted">{{ queryt.date_posted.strftime('%Y-%m-%d') }}</small>
+    <div class="container-fluid">
+        <main role="main">
+          <div class="row col-md-12">
+            <div>
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                      {{ message }}
                     </div>
-                    <h2><a class="article-title" href="{{ url_for('queries.queryt', queryt_id=queryt.id) }}">{{ queryt.term }}</a></h2>
-                    <p class="article-home">{{ queryt.content }}</p>
-                    <p class="cont-dash">. . .</p>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+            </div>
+            <div class="d-flex flex-row-reverse col-md-12">
+                <div id="toggler" class="btn-group btn-group-toggle p-2">
+                    <label class="btn btn-secondary {{ active1 }}" onclick="location.href='{{ url_for('main.home') }}';">
+                        <input type="radio" name="options" id="option1" autocomplete="off"> Recent
+                    </label>
+                    <label class="btn btn-secondary {{ active2 }}" onclick="location.href='{{ url_for('main.home_all') }}';">
+                        <input type="radio" name="options" id="option2" autocomplete="off"> All
+                    </label>
                 </div>
-    {#            <img class ="align-self-center mr-3" src ="{{ url_for('static',filename=picture_file)}}">#}
-                <div class="d-none d-sm-block">
-                    {% if queryt.origtermpresent %}
-                        <div class = "align-self-center circleg"><p></p>{{  queryt.percentmatch }}</div>
-                    {% else %}
-                        <div class = "align-self-center circle"><p></p>{{  queryt.percentmatch }}</div>
-                    {% endif %}
-                </div>
+            </div>
+            {% for queryt in queriest.items %}
+                <article class="media content-section col-md-12">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <small class="text-muted">{{ queryt.origterm }}</small>
+                            <small class="text-muted"> | </small>
+                            <small class="text-muted">{{ queryt.date_posted.strftime('%Y-%m-%d') }}</small>
+                        </div>
+                        <h2><a class="article-title" href="{{ url_for('queries.queryt', queryt_id=queryt.id) }}">{{ queryt.term }}</a></h2>
+                        <p class="article-home">{{ queryt.content }}</p>
+                        <p class="cont-dash">. . .</p>
+                    </div>
+        {#            <img class ="align-self-center mr-3" src ="{{ url_for('static',filename=picture_file)}}">#}
+                    <div class="d-none d-sm-block">
+                        {% if queryt.origtermpresent %}
+                            <div class = "align-self-center circleg"><p></p>{{  queryt.percentmatch }}</div>
+                        {% else %}
+                            <div class = "align-self-center circle"><p></p>{{  queryt.percentmatch }}</div>
+                        {% endif %}
+                    </div>
 
 
-            </article>
-        {% endfor %}
-      </div>
-    </main>
+                </article>
+            {% endfor %}
+          </div>
+        </main>
+    </div>
 {% endblock content %}
 {% block footer %}
 
