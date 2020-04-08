@@ -11,8 +11,8 @@ main = Blueprint("main", __name__)
 def home():
     db.create_all()
     queriest = QueryT.query.filter_by(user_id=session.sid)
-    queriest = queriest[::-1]
-
+    page = request.args.get('page', 1, type=int)
+    queriest = queriest.paginate(page=page, per_page=5)
     return render_template('home.html', queriest=queriest, active1="active", active2="")
 
 
@@ -24,6 +24,6 @@ def about():
 
 @main.route("/home/all")
 def home_all():
-    queriest = QueryT.query.all()
-    queriest = queriest[::-1]
+    page = request.args.get('page', 1, type=int)
+    queriest = QueryT.query.paginate(page=page, per_page=5)
     return render_template('home.html', queriest=queriest, active1="", active2="active")

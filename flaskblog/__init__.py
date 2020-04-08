@@ -16,9 +16,11 @@ def create_app(config_class=Config):
     sess.init_app(app)
     from flaskblog.queries.routes import queries
     from flaskblog.main.routes import main
+    from flaskblog.errors.handlers import errors
     app.register_blueprint(queries)
     rq.init_app(app)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
 
 
     return app
