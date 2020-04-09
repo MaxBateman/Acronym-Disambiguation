@@ -2,8 +2,8 @@
 {% block content %}
     <div class="container-fluid">
         <main role="main">
-          <div class="row col-md-12">
-            <div>
+          <div class="row">
+            <div class="col-md-12">
               {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}
                   {% for category, message in messages %}

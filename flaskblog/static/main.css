@@ -102,6 +102,9 @@ mark.acrmatch{
 mark.acr{
   background-color: darkgrey;
 }
+.row{
+  margin-top:1px;
+}
 .circleg {
   width: 5em;
   height: 5em;
