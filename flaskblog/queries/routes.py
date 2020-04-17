@@ -40,8 +40,10 @@ def new_queryt():
         counter =0
         while qt.result != form.term.data:
             time.sleep(1)
-            if qt.result ==form.term.data:
-                print(111)
+            if qt.result == True:
+                flash('Your query has not been created!', 'failed')
+                break
+                
             print(qt.result, form.term.data)
             print("wait")
             counter = counter +1
@@ -56,9 +58,7 @@ def new_queryt():
         #    time.sleep(0.2)
         #    print(qt.get_status())
         print(qt.result)
-        if qt.result == True and not flashed:
-            flash('Your query has not been created!', 'failed')
-        elif not flashed:
+        if not flashed:
             flash('Your query has been created!', 'success')
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
