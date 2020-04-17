@@ -24,7 +24,7 @@
                 {% endif %}
               {% endwith %}
             </div>
-            
+
             {% for queryt in queriest.items %}
                 <article class="media content-section col-md-12">
                     <div class="media-body">
@@ -32,17 +32,18 @@
                             <small class="text-muted">{{ queryt.origterm }}</small>
                             <small class="text-muted"> | </small>
                             <small class="text-muted">{{ queryt.date_posted.strftime('%Y-%m-%d') }}</small>
-                            <div class="rightsidediv tooltip">
+                            <div class="d-none d-sm-block rightsidediv tooltip">
                                 <i class="fa fa-question-circle" style="font-size:24px"></i>
                                 <span class="tooltiptext">
-                                    Potential Full Form of Acronym: {{ queryt.origterm }}\\n
-                                    Considered correct: {{ queryt.origtermpresent }}\\n
-                                    Select Full Form for More Information 
+                                    <p>Potential Full Form of Acronym: {{ queryt.origterm }}</p>
+                                    <p>Considered correct: {{ queryt.origtermpresent }}</p>
+                                    <p>Select Full Form for More Information
                                     {% if queryt.origtermpresent %}
-                                        \\n or to Select Potential Correct Forms.
+                                        <p> or to Select Potential Correct Forms.</p>
                                     {% else %}
                                         .
                                     {% endif %}
+                                    </p>
                                 </span>
                             </div>
                         </div>
