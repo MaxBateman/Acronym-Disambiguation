@@ -42,7 +42,7 @@ def new_queryt():
             time.sleep(1)
             if qt.result == True:
                 flashed = True
-                flash('Your query has not been created!', 'failed')
+                flash('Your query has not been created!', 'danger')
                 break
                 
             print(qt.result, form.term.data)
@@ -50,7 +50,7 @@ def new_queryt():
             counter = counter +1
             if counter == 5:
                 flashed = True
-                flash('Your query may still be pending, please refresh the page in a few seconds.', 'pending')
+                flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
                 break
         #qt = Job.fetch('form.term.data', rq)
         #print(qt.get_status())
