@@ -54,6 +54,7 @@ def new_queryt():
         #while not qt.get_status() == "finished":
         #    time.sleep(0.2)
         #    print(qt.get_status())
+        print(qt.result)
         if qt.result == True and not flashed:
             flash('Your query has not been created!', 'failed')
         elif not flashed:
