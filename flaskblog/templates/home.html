@@ -27,7 +27,7 @@
 
             {% for queryt in queriest.items %}
                 <article class="media content-section col-md-12">
-                    <div class="media-body">
+                    <div class="media-body col-md-12">
                         <div class="article-metadata">
                             <small class="text-muted">{{ queryt.origterm }}</small>
                             <small class="text-muted"> | </small>
@@ -35,7 +35,6 @@
                             <div class="d-none d-sm-block rightsidediv tooltip">
                                 <i class="fa fa-question-circle" style="font-size:24px"></i>
                                 <span class="tooltiptext">
-                                    <p></p>
                                     <p>Potential Full Form of Acronym: {{ queryt.origterm }}</p>
                                     <p>Considered correct: {{ queryt.origtermpresent }}</p>
                                     <p>Select Full Form for More Information
