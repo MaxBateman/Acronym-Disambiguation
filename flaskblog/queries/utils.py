@@ -2,6 +2,7 @@ from pymed import PubMed
 from nltk import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 import requests
+from collections import Counter
 
 stop_words = stopwords.words('english')
 pubmed = PubMed(tool="PubMedSearch", email="maxmoneywells@gmail.com")
@@ -53,6 +54,7 @@ def inp(search_term, potential_full, selected_full=None):
         acr_hits = []
         acr_miss = []
         temp_hits = []
+        temp_hits_nu =[]
         #iterate through sentences containing brackets
         for sentence in sentences:
 
@@ -68,6 +70,7 @@ def inp(search_term, potential_full, selected_full=None):
                 acr_miss.extend(misses_temp)
                 #for acronym that matched in sentence, appened to global list
                 for word in acr_list_temp:
+                    temp_hits_nu.append(word)
                     if word.lower() not in temp_hits:
                         acr_hits.append(word)
                 for hit in acr_hits:
@@ -92,12 +95,22 @@ def inp(search_term, potential_full, selected_full=None):
 
             acrmatches = ", ".join(acr_hits)
     failed = False
-    print(valid, failure)
+    
     if not valid or failure == True or len(abstracts) < 201:
         failed = True
         search_term = fword = percentmatch = present = acrmatches = lfmatches = results = abstracts = "None"
+        else:
+
+        count = Counter(temp_hits_nu)
+        if present:
+            count[search_term] = count[search_term]*1.25
+
+            if max(count, key=count.get) == search_term:
+                present = True
+            else:
+                present = False
     #return db parameters
-    print (failed)
+    
     return search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches, results, failed
 
 
