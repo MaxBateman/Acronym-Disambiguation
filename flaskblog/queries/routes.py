@@ -72,7 +72,7 @@ def egg(sterm, termdata):
     qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     flashed = False
-    while qt.result != termdata:
+    while qt.result != sterm:
         time.sleep(1)
         print(qt.result, termdata)
         if qt.result == True:
