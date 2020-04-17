@@ -86,7 +86,6 @@ footer{
   left: 0;
   
   overflow-y: auto;
-  overflow-x:hidden;
 }
 #foot{
   margin-top: 5px !important;
@@ -123,6 +122,7 @@ mark.acr{
 a.article-title:hover {
   color: #428bca;
   text-decoration: none;
+  overflow:hidden;
 }
 
 .article-content {
