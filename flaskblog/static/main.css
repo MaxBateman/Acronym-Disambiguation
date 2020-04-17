@@ -196,7 +196,6 @@ a.article-title:hover {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  padding-top: 1em;
   width: 220px;
   height: 190px;
   background-color: black;
@@ -211,6 +210,7 @@ a.article-title:hover {
   margin-right: 4px;
   opacity: 0;
   transition: opacity 1s;
+  padding-top: 1em;
 }
 
 .tooltip .tooltiptext::after {
