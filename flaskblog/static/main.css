@@ -117,12 +117,12 @@ mark.acr{
 }
 .article-title {
   color: #444444;
+  overflow: hidden;
 }
 
 a.article-title:hover {
   color: #428bca;
   text-decoration: none;
-  overflow:hidden;
 }
 
 .article-content {
