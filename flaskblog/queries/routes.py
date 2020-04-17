@@ -30,6 +30,7 @@ def new_queryt():
 
     if form.validate_on_submit():
         #terms = get_terms(get_pubmed(form.term.data))
+        flashed = False
         tempterm = form.term.data
         if form.term.data[0] == " ":
             tempterm = form.term.data.strip()
@@ -45,7 +46,7 @@ def new_queryt():
             print("wait")
             counter = counter +1
             if counter == 5:
-                flashed = "done"
+                flashed = True
                 flash('Your query may still be pending, please refresh the page in a few seconds.')
                 break
         #qt = Job.fetch('form.term.data', rq)
