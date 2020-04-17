@@ -35,9 +35,9 @@ def new_queryt():
             tempterm = form.term.data.strip()
         user_id = session.sid
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
-        qt, result = get_inp.queue(form.term.data, potential_full, user_id)
+        qt = get_inp.queue(form.term.data, potential_full, user_id)
         counter =0
-        while qt.result != form.term.data and counter <5:
+        while qt.result != form.term.data or qt.result != True:
             time.sleep(1)
             print(qt.result)
             print("wait")
@@ -66,7 +66,7 @@ def new_queryt():
 def egg(sterm, termdata):
     user_id = session.sid
     potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(sterm[0])).all()
-    qt, result = get_inp.queue(sterm, potential_full, user_id, termdata)
+    qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     while qt.result != termdata:
         time.sleep(1)
@@ -125,5 +125,6 @@ def get_inp(data, potential_full, user_id, termdata=None):
             queryt.author.append(Article(title=title, abstract=abstract, doi=doi, publication_date=publication_date))
         db.session.add(queryt)
         db.session.commit()
-    return search_term, failed
+        return search_term
+    return failed
 
