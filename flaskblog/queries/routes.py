@@ -45,8 +45,6 @@ def new_queryt():
                 flash('Your query has not been created!', 'danger')
                 break
                 
-            print(qt.result, form.term.data)
-            print("wait")
             counter = counter +1
             if counter == 5:
                 flashed = True
@@ -75,19 +73,19 @@ def egg(sterm, termdata):
     counter =0
     while qt.result != termdata:
         time.sleep(1)
-        print(qt.result)
-        print("wait")
-        counter = counter +1
-        if counter == 5:
-            flashed = "done"
-            flash('Your query may still be pending, please refresh the page in a few seconds.', 'error')
-            break
+        if qt.result == True:
+                flashed = True
+                flash('Your query has not been created!', 'danger')
+                break
+                
+            counter = counter +1
+            if counter == 5:
+                flashed = True
+                flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
+                break
 
-    if qt.result == True and not flashed:
-        flash('Your query has not been created!', 'error')
-
-    elif qt.result != True and not flashed:
-        flash('Your query has been created!', 'success')
+    if not flashed:
+            flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
 
 

@@ -36,7 +36,8 @@
                                 <i class="fa fa-question-circle" style="font-size:24px"></i>
                                 <span class="tooltiptext">
                                     <p>Potential Full Form of Acronym: {{ queryt.origterm }}</p>
-                                    <p>Considered correct: {{ queryt.origtermpresent }}</p>
+                                    <p>{{ queryt.percentmatch }} Acronyms Detected Matched Long Form</p>
+                                    <p>Considered Correct: {{ queryt.origtermpresent }}</p>
                                     
                                     {% if queryt.origtermpresent %}
                                         <p>Select Full Form for More Information.</p>
