@@ -37,11 +37,11 @@
                                 <span class="tooltiptext">
                                     <p>Potential Full Form of Acronym: {{ queryt.origterm }}</p>
                                     <p>Considered correct: {{ queryt.origtermpresent }}</p>
-                                    <p>Select Full Form for More Information
+                                    
                                     {% if queryt.origtermpresent %}
-                                        <p> or to Select Potential Correct Forms.</p>
+                                        <p>Select Full Form for More Information.</p>
                                     {% else %}
-                                        .
+                                        <p>Select Full Form for More Information or to Select Potential Correct Forms.</p>
                                     {% endif %}
                                     </p>
                                 </span>
