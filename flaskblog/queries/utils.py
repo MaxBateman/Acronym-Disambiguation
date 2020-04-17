@@ -93,10 +93,12 @@ def inp(search_term, potential_full, selected_full=None):
 
             acrmatches = ", ".join(acr_hits)
     failed = False
+    print(valid, failure)
     if not valid or failure == True or len(abstracts) < 201:
         failed = True
         search_term = fword = percentmatch = present = acrmatches = lfmatches = results = abstracts = "None"
     #return db parameters
+    print (failed)
     return search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches, failed
 
 
