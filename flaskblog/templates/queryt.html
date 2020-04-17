@@ -17,15 +17,17 @@
       <article class="media content-section col-md-8">
 
         <div class="media-body">
-          <div class="article-metadata">
-              <small class="text-muted">{{ queryt.origterm }}</small>
-              <small class="text-muted"> | </small>
-              <small class="text-muted">{{ queryt.date_posted.strftime('%Y-%m-%d') }}</small>
+            {% for article in content %}
 
-          </div>
-          <h2 class="article-title">{{ queryt.term }}</h2>
-          <p class="article-content">{{ content }}</p>
-
+                <div class="article-metadata">
+                    <small class="text-muted">{{ article.publication_date.strftime('%Y-%m-%d') }}</small>
+                </div>
+                    <h4>{{ article.title }}</h4>
+                    <p class="article-content">{{ article.abstract }}</p>
+                    <small>DOI: <a href="//doi.org/{{ article.doi }}">{{ article.doi }}</a></small>
+                    <p></p>
+                    
+            {% endfor %}
         </div>
       </article>
         <div class="col-md-4">

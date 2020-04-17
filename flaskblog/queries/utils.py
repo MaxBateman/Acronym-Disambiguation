@@ -37,12 +37,13 @@ def inp(search_term, potential_full, selected_full=None):
             lfmatches = ", ".join(lfmatches)
 
         #get abstracts from pubmed
-        abstracts = get_pubmed(fword)
+        abstracts, results = get_pubmed(fword)
         #print("valid",valid)
 
     #not an acronym, just get abstracts
     else:
-        abstracts = get_pubmed(search_term)
+        #abstracts = get_pubmed(search_term)
+        failure = True
         #print("invalid")
 
     # if term found from dictionary
@@ -92,8 +93,13 @@ def inp(search_term, potential_full, selected_full=None):
 
             acrmatches = ", ".join(acr_hits)
 
+    if not valid or failure or len(abstracts) < 201:
+        failed = True
+        search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = "None"
+    else:
+        failed = False
     #return db parameters
-    return search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches
+    return search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches, failed
 
 
 
@@ -330,7 +336,7 @@ def get_pubmed(term):
     counter = 0
     abstracts =""
     abstract = "N/A"
-
+    resultlist = []
     for article in results:
         abstract = article.abstract
         #print(abstract)
@@ -340,7 +346,8 @@ def get_pubmed(term):
             else:
             	# formats abstracts
                 abstracts = abstracts + "\n\n" + abstract
+            resultlist.append(article)
 
         counter = counter + 1
 
-    return abstracts
+    return abstracts, resultlist

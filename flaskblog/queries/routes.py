@@ -35,21 +35,27 @@ def new_queryt():
             tempterm = form.term.data.strip()
         user_id = session.sid
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
-        qt = get_inp.queue(form.term.data, potential_full, user_id)
+        qt, result = get_inp.queue(form.term.data, potential_full, user_id)
         counter =0
         while qt.result != form.term.data and counter <5:
             time.sleep(1)
             print(qt.result)
             print("wait")
             counter = counter +1
+            if counter == 5:
+                flashed = done
+                flash('Your query may still be pending, please refresh the page in a few seconds.')
+                break
         #qt = Job.fetch('form.term.data', rq)
         #print(qt.get_status())
         #c = False
         #while not qt.get_status() == "finished":
         #    time.sleep(0.2)
         #    print(qt.get_status())
-        
-        flash('Your query has been created!', 'success')
+        if result == True and not flashed:
+            flash('Your query has not been created!', 'failed')
+        elif result == False and not flashed:
+            flash('Your query has been created!', 'success')
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
@@ -60,49 +66,64 @@ def new_queryt():
 def egg(sterm, termdata):
     user_id = session.sid
     potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(sterm[0])).all()
-    qt = get_inp.queue(sterm, potential_full, user_id, termdata)
+    qt, result = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
-    while qt.result != termdata and counter <5:
+    while qt.result != termdata:
         time.sleep(1)
         print(qt.result)
         print("wait")
         counter = counter +1
-    
-    flash('Your query has been created!', 'success')
+        if counter == 5:
+            flashed = done
+            flash('Your query may still be pending, please refresh the page in a few seconds.')
+            break
+    if result == True and not flashed:
+        flash('Your query has not been created!', 'failed')
+    elif result == False and not flashed:
+        flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
 
 
 @queries.route("/queryt/<int:queryt_id>")
 def queryt(queryt_id):
     queryt = QueryT.query.get_or_404(queryt_id)
+    articles = Article.query.filter_by(query_id=queryt_id)
     lfmatches = None
     acrmatches = None
-    content = queryt.content
+    
     if queryt.lfmatches:
         lfmatches = queryt.lfmatches.split(", ")
     acrreplace = []
     if queryt.acrmatches:
         acrmatches = queryt.acrmatches.split(", ")
+        for article in articles:
+            for term in acrmatches:
+                termb = "("+term+")"
+                if term.lower() == queryt.origterm.lower():
+                    article.abstract = article.abstract.replace(termb, '<mark class="acrmatch">'+termb+'</mark>')
+                else:
+                    article.abstract = article.abstract.replace(termb, '<mark class="acr">'+termb+'</mark>')
+            article.abstract = Markup(article.abstract)
 
-        for term in acrmatches:
-            termb = "("+term+")"
-            if term.lower() == queryt.origterm.lower():
-                content = content.replace(termb, '<mark class="acrmatch">' + termb + '</mark>')
-            else:
-                content = content.replace(termb, '<mark class="acr">'+termb+'</mark>' )
-    content = Markup(content)
-
-    return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=content)
+    return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=articles)
 
 
 @rq.job
 def get_inp(data, potential_full, user_id, termdata=None):
     time.sleep(0.35)
-    search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = inp(data, potential_full, termdata)
+    search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches, results, failed = inp(data, potential_full, termdata)
     print("done")
     queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
                     origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches, user_id=user_id)
-    db.session.add(queryt)
-    db.session.commit()
-    return search_term
+    if not failed:    
+        for article in results:
+            abstract = article.abstract
+            title = article.title
+            doi = article.doi
+            publication_date = article.publication_date
+
+            queryt.author.append(Article(title=title, abstract=abstract, doi=doi, publication_date=publication_date))
+        db.session.add(queryt)
+        db.session.commit()
+    return search_term, failed
 

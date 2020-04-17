@@ -4,6 +4,7 @@ from flaskblog import db
 
 
 class QueryT(db.Model):
+    __tablename__ = 'queryt'
     id = db.Column(db.Integer, primary_key=True)
     term = db.Column(db.String(100), nullable=False)
     origterm = db.Column(db.String(100), nullable=False)
@@ -15,8 +16,20 @@ class QueryT(db.Model):
     lfmatches = db.Column(db.Text)
     user_id = db.Column(db.String(50), nullable=False)
 
+
     def __repr__(self):
         return f"Post('{self.term}', '{self.date_posted}')"
+
+
+class Article(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100))
+    abstract = db.Column(db.Text)
+    doi = db.Column(db.String(20))
+    publication_date = db.Column(db.DateTime)
+    query_id = db.Column(db.Integer, db.ForeignKey('queryt.id'), nullable=False)
+    queries = db.relationship('QueryT', backref='author', lazy=True)
+
 
 
 class Dictionary(db.Model):
