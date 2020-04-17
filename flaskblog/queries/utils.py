@@ -18,8 +18,7 @@ def inp(search_term, potential_full, selected_full=None):
     lfmatches = None
     percentmatch = "N/A"
     fword = search_term
-    print(search_term_split)
-    print(validacr(search_term))
+    
     failure = False
     #if less than two words and considered an acronym
     if len(search_term_split) < 2 and validacr(search_term):
@@ -99,7 +98,7 @@ def inp(search_term, potential_full, selected_full=None):
         search_term = fword = percentmatch = present = acrmatches = lfmatches = results = abstracts = "None"
     #return db parameters
     print (failed)
-    return search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches, failed
+    return search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches, results, failed
 
 
 
