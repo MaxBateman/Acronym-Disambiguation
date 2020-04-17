@@ -74,6 +74,7 @@ def egg(sterm, termdata):
     flashed = False
     while qt.result != termdata:
         time.sleep(1)
+        print(qt.result, termdata)
         if qt.result == True:
                 flashed = True
                 flash('Your query has not been created!', 'danger')
