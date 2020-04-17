@@ -79,11 +79,11 @@ def egg(sterm, termdata):
         counter = counter +1
         if counter == 5:
             flashed = "done"
-            flash('Your query may still be pending, please refresh the page in a few seconds.')
+            flash('Your query may still be pending, please refresh the page in a few seconds.', 'error')
             break
     if qt.result == True and not flashed:
-        flash('Your query has not been created!', 'failed')
-    elif not flashed:
+        flash('Your query has not been created!', 'error')
+    elif qt.result != True and not flashed:
         flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
 
