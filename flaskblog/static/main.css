@@ -86,13 +86,7 @@ footer{
   left: 0;
   
   overflow-y: auto;
-
-  
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
+  overflow-x:hidden;
 }
 #foot{
   margin-top: 5px !important;
