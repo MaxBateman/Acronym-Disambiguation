@@ -118,6 +118,7 @@ mark.acr{
 .article-title {
   color: #444444;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a.article-title:hover {
