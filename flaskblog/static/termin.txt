@@ -409,6 +409,7 @@ Symptoms
 Surgery
 Seizure
 Triiodothyronine
+Thyroid transcription factor 1
 Thyroxine
 Tuberculosis/Trouble Breathing
 Total Body Failure
