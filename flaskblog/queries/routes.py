@@ -79,11 +79,11 @@ def egg(sterm, termdata):
                 flash('Your query has not been created!', 'danger')
                 break
                 
-            counter = counter +1
-            if counter == 5:
-                flashed = True
-                flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
-                break
+        counter = counter +1
+        if counter == 5:
+            flashed = True
+            flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
+            break
 
     if not flashed:
             flash('Your query has been created!', 'success')
