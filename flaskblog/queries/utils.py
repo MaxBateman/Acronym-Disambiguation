@@ -20,7 +20,7 @@ def inp(search_term, potential_full, selected_full=None):
     fword = search_term
     print(search_term_split)
     print(validacr(search_term))
-
+    failure = False
     #if less than two words and considered an acronym
     if len(search_term_split) < 2 and validacr(search_term):
         search_term = search_term.replace(" ", "")
@@ -92,12 +92,10 @@ def inp(search_term, potential_full, selected_full=None):
                 present = False
 
             acrmatches = ", ".join(acr_hits)
-
-    if not valid or failure or len(abstracts) < 201:
+    failed = False
+    if not valid or failure == True or len(abstracts) < 201:
         failed = True
-        search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches = "None"
-    else:
-        failed = False
+        search_term = fword = percentmatch = present = acrmatches = lfmatches = results = abstracts = "None"
     #return db parameters
     return search_term, fword, abstracts, percentmatch, present, acrmatches, lfmatches, failed
 
