@@ -83,6 +83,7 @@ def egg(sterm, termdata):
             break
     if qt.result == True and not flashed:
         flash('Your query has not been created!', 'error')
+        
     elif qt.result != True and not flashed:
         flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
