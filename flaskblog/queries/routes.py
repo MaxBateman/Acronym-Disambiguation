@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, Markup, session
 from flaskblog import db, sess
 from flaskblog.queries.forms import QuerytForm
-from flaskblog.models import QueryT, Dictionary
+from flaskblog.models import QueryT, Dictionary, Article
 from flaskblog.queries.utils import *
 import time
 import os
@@ -39,6 +39,8 @@ def new_queryt():
         counter =0
         while qt.result != form.term.data or qt.result != True:
             time.sleep(1)
+            if qt.result ==form.term.data:
+                print(111)
             print(qt.result, form.term.data)
             print("wait")
             counter = counter +1
