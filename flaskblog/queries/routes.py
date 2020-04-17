@@ -52,9 +52,9 @@ def new_queryt():
         #while not qt.get_status() == "finished":
         #    time.sleep(0.2)
         #    print(qt.get_status())
-        if result == True and not flashed:
+        if qt.result == True and not flashed:
             flash('Your query has not been created!', 'failed')
-        elif result == False and not flashed:
+        elif not flashed:
             flash('Your query has been created!', 'success')
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
@@ -77,9 +77,9 @@ def egg(sterm, termdata):
             flashed = "done"
             flash('Your query may still be pending, please refresh the page in a few seconds.')
             break
-    if result == True and not flashed:
+    if qt.result == True and not flashed:
         flash('Your query has not been created!', 'failed')
-    elif result == False and not flashed:
+    elif not flashed:
         flash('Your query has been created!', 'success')
     return redirect(url_for('main.home'))
 
