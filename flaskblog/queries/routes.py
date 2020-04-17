@@ -37,7 +37,7 @@ def new_queryt():
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
         qt = get_inp.queue(form.term.data, potential_full, user_id)
         counter =0
-        while qt.result != form.term.data or qt.result != True:
+        while qt.result != form.term.data:
             time.sleep(1)
             if qt.result ==form.term.data:
                 print(111)
