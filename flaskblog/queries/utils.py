@@ -99,7 +99,8 @@ def inp(search_term, potential_full, selected_full=None):
     if not valid or failure == True or len(abstracts) < 201:
         failed = True
         search_term = fword = percentmatch = present = acrmatches = lfmatches = results = abstracts = "None"
-        else:
+        
+    else:
 
         count = Counter(temp_hits_nu)
         if present:
