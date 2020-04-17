@@ -71,6 +71,7 @@ def egg(sterm, termdata):
     potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(sterm[0])).all()
     qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
+    flashed = False
     while qt.result != termdata:
         time.sleep(1)
         if qt.result == True:
