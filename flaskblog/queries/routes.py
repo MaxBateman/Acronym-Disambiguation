@@ -50,7 +50,7 @@ def new_queryt():
             counter = counter +1
             if counter == 5:
                 flashed = True
-                flash('Your query may still be pending, please refresh the page in a few seconds.')
+                flash('Your query may still be pending, please refresh the page in a few seconds.', 'pending')
                 break
         #qt = Job.fetch('form.term.data', rq)
         #print(qt.get_status())
