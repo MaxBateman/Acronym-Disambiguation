@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, url_for, redirect, flash, Markup, session
-from flaskblog import db, sess, email
+from flaskblog import db, sess, mail
 from flaskblog.queries.forms import QuerytForm
 from flaskblog.models import QueryT, Dictionary, Article
 from flaskblog.queries.utils import *
 import time
+from flaskblog.config import ADMINS
 import os
 from sqlalchemy import event
 from flaskblog import rq
