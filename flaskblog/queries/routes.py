@@ -1,5 +1,5 @@
 from flask import Blueprint, has_app_context, render_template, url_for, redirect, flash, Markup, session
-from flaskblog import db, sess, mail
+from flaskblog import db, sess, mail, app
 from flaskblog.queries.forms import QuerytForm, Email
 from flaskblog.models import QueryT, Dictionary, Article
 from flaskblog.queries.utils import *
