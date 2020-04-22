@@ -6,7 +6,7 @@ from flaskblog.queries.utils import *
 import time
 from flaskblog.config import ADMINS
 import os
-from app import app
+
 from sqlalchemy import event
 from flaskblog import rq
 from rq.job import Job
