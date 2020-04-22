@@ -119,7 +119,7 @@ def queryt(queryt_id):
         if form.validate_on_submit():
             msg = Message("ACRPUBMED - ", ADMINS[0], [form.email.data])
             msg.body = "hell"
-            send_email.queue(msg,mail)
+            send_email.queue(mail.send(msg))
             flash('Email Sent!', 'success')
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
@@ -152,7 +152,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 
 @rq.job
-def send_email(msg):
-    mail.send(msg)
+def send_email():
+    
     print("done")
     return
