@@ -212,7 +212,18 @@ a.article-title:hover {
   transition: opacity 1s;
   padding-top: 1em;
 }
+#email.form-control{
 
+  display: inline-flex;
+  border-radius: 0px;
+}
+
+.btn-email{
+
+  margin:0px;
+  border-radius: 0px;
+
+}
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;

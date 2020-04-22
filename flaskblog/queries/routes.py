@@ -8,6 +8,7 @@ import os
 from sqlalchemy import event
 from flaskblog import rq
 from rq.job import Job
+from flask_mail import Message
 queries = Blueprint('queries',__name__)
 
 
@@ -112,7 +113,17 @@ def queryt(queryt_id):
                     article.abstract = article.abstract.replace(termb, '<mark class="acr">'+termb+'</mark>')
             article.abstract = Markup(article.abstract)
 
-    return render_template('queryt.html', title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=articles)
+    form = Email()
+    if form.is_submitted():
+        if form.validate_on_submit():
+            #send_email("PUBMED - "+queryt.origterm, ADMINS[0], [form.email.data], articles[1])
+            flash('Email Sent!', 'success')
+            return redirect(url_for('queries.queryt', queryt_id=queryt.id))
+        else:
+
+            flash('Invalid Email!', 'danger')
+            return redirect(url_for('queries.queryt', queryt_id=queryt.id))
+    return render_template('queryt.html', form=form, title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=articles)
 
 
 @rq.job
@@ -135,3 +146,11 @@ def get_inp(data, potential_full, user_id, termdata=None):
         return search_term
     return failed
 
+
+@rq.job
+def send_email(subject,sender,recipients,text_body):
+    
+    msg = Message(subject, sender=sender, recipients=recipients)
+    msg.body=text_body
+
+    mail.send(msg)
