@@ -1,4 +1,4 @@
-from flask import Blueprint, has_app_context, render_template, url_for, redirect, flash, Markup, session
+from flask import Blueprint, current_app, has_app_context, render_template, url_for, redirect, flash, Markup, session
 from flaskblog import db, sess, mail
 from flaskblog.queries.forms import QuerytForm, Email
 from flaskblog.models import QueryT, Dictionary, Article
@@ -121,7 +121,7 @@ def queryt(queryt_id):
             msg = Message("ACRPUBMED - ", ADMINS[0], [form.email.data])
             msg.body = "hell"
             
-            send_email.queue(app, msg)
+            send_email.queue(current_app, msg)
             flash('Email Sent!', 'success')
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
