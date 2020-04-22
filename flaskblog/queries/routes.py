@@ -154,9 +154,9 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 
 @rq.job
-def send_email(app, msg):
+def send_email(current_app, msg):
     print(has_app_context)
-    with app.app_context():
+    with current_app.app_context():
         mail.send(msg)
     print("done")
     return
