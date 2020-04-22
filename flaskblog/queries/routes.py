@@ -122,7 +122,7 @@ def queryt(queryt_id):
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
         else:
-            send_email.queue("ACRPUBMED - "+ queryt.origterm, ADMINS[0], [form.email.data], "hell")
+            send_email.queue("ACRPUBMED - ", ADMINS[0], [form.email.data], "hell")
             flash('Invalid Email!', 'danger')
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
     return render_template('queryt.html', form=form, title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=articles)
