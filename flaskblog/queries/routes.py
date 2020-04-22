@@ -155,7 +155,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 @rq.job
 def send_email(msg):
-    flask.current_app.app_context().push()
+    current_app.app_context().push()
     
     mail.send(msg)
     print("done")
