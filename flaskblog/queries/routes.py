@@ -93,7 +93,7 @@ def egg(sterm, termdata):
     return redirect(url_for('main.home'))
 
 
-@queries.route("/queryt/<int:queryt_id>")
+@queries.route("/queryt/<int:queryt_id>", methods=['GET', 'POST'])
 def queryt(queryt_id):
     queryt = QueryT.query.get_or_404(queryt_id)
     articles = Article.query.filter_by(query_id=queryt_id)
