@@ -119,9 +119,10 @@ def queryt(queryt_id):
         if form.validate_on_submit():
             #send_email("PUBMED - "+queryt.origterm, ADMINS[0], [form.email.data], articles[1])
             flash('Email Sent!', 'success')
+
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
         else:
-
+            send_email.queue("ACRPUBMED - "+ queryt.origterm, ADMINS[0], [form.email.data], articles[1])
             flash('Invalid Email!', 'danger')
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
     return render_template('queryt.html', form=form, title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=articles)
