@@ -106,7 +106,7 @@ def inp(search_term, potential_full, selected_full=None):
         if present:
             count[search_term] = count[search_term]*1.25
 
-            if max(count, key=count.get) == search_term:
+            if max(count, key=count.get).lower() == search_term.lower():
                 present = True
             else:
                 present = False
