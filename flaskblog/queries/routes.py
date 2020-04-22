@@ -119,7 +119,7 @@ def queryt(queryt_id):
         if form.validate_on_submit():
             msg = Message("ACRPUBMED - ", ADMINS[0], [form.email.data])
             msg.body = "hell"
-            send_email.enqueue(msg.mail)
+            send_email.enqueue(msg,mail)
             flash('Email Sent!', 'success')
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
