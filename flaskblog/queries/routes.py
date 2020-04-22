@@ -155,6 +155,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 @rq.job
 def send_email(msg):
+    from app import create_app
     app = create_app()
     app.app_context().push()
     
