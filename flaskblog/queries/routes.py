@@ -157,3 +157,4 @@ def send_email(subject,sender,recipients,text_body):
 
     mail.send(msg)
     print("done")
+    return
