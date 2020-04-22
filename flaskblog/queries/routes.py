@@ -121,7 +121,7 @@ def queryt(queryt_id):
             msg = Message("ACRPUBMED - ", ADMINS[0], [form.email.data])
             msg.body = "hell"
             
-            send_email.queue(current_app, msg)
+            send_email.queue(msg)
             flash('Email Sent!', 'success')
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
@@ -154,8 +154,9 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 
 @rq.job
-def send_email(current_app, msg):
+def send_email(msg):
     print(has_app_context)
+    app = create_app()
     with current_app.app_context():
         mail.send(msg)
     print("done")
