@@ -157,7 +157,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
 def send_email(msg):
     print(has_app_context)
     app = create_app()
-    with current_app.app_context():
+    with current_app.app_context(msg):
         mail.send(msg)
     print("done")
     return
