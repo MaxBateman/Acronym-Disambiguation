@@ -16,9 +16,8 @@ class Config:
     SECRET_KEY = config.get('SECRET_KEY')
 
     MAIL_SERVER = 'smtp.googlemail.com'
-    MAIL_PORT = 465
-    MAIL_USE_TLS = False
-    MAIL_USE_SSL = True
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
     MAIL_USERNAME = 'acrpubmed@gmail.com'
     MAIL_PASSWORD = 'Poohbiecuteacr123'
-    MAIL_MAX_EMAILS = 5
+    
