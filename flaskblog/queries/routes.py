@@ -1,11 +1,12 @@
 from flask import Blueprint, has_app_context, render_template, url_for, redirect, flash, Markup, session
-from flaskblog import db, sess, mail, app
+from flaskblog import db, sess, mail
 from flaskblog.queries.forms import QuerytForm, Email
 from flaskblog.models import QueryT, Dictionary, Article
 from flaskblog.queries.utils import *
 import time
 from flaskblog.config import ADMINS
 import os
+from app import app
 from sqlalchemy import event
 from flaskblog import rq
 from rq.job import Job
@@ -119,8 +120,8 @@ def queryt(queryt_id):
         if form.validate_on_submit():
             msg = Message("ACRPUBMED - ", ADMINS[0], [form.email.data])
             msg.body = "hell"
-            with app.app_context():
-                send_email.queue(msg)
+            
+            send_email.queue(app, msg)
             flash('Email Sent!', 'success')
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
@@ -153,10 +154,9 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 
 @rq.job
-def send_email(msg):
+def send_email(app, msg):
     print(has_app_context)
-    
-
-    mail.send(msg)
+    with app.app_context():
+        mail.send(msg)
     print("done")
     return
