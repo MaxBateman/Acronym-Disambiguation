@@ -16,7 +16,7 @@ from flaskblog import create_app
 
 app = create_app()
 app.app_context().push()
-def send_em(msg)
+def send_em(msg):
     mail.send(msg)
     return
 
