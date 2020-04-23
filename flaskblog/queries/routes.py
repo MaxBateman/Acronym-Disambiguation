@@ -12,7 +12,10 @@ from flaskblog import rq
 from rq.job import Job
 from flask_mail import Message
 queries = Blueprint('queries',__name__)
+from flaskblog import create_app
 
+app = create_app()
+app.app_context().push()
 
 @queries.route("/queriest/new", methods=['GET', 'POST'])
 def new_queryt():
@@ -155,7 +158,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 @rq.job
 def send_email(msg):
-    from falskblog import mail
+    from flaskblog import mail
     mail.send(msg)
     print("done")
     return
