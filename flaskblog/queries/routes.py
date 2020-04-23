@@ -158,7 +158,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 @rq.job
 def send_email(msg):
-    from flaskblog import mail
+    
     mail.send(msg)
     print("done")
     return
