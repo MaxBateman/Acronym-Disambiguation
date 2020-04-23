@@ -129,7 +129,7 @@ def queryt(queryt_id):
         if form.validate_on_submit():
             msg = Message("ACRPUBMED - ", ADMINS[0], [form.email.data])
             msg.body = "hell"
-            
+            print(msg)
             send_email.queue(msg)
             flash('Email Sent!', 'success')
 
