@@ -1,5 +1,5 @@
 from flask import Blueprint, current_app, has_app_context, render_template, url_for, redirect, flash, Markup, session
-from flaskblog import db, sess, mail
+from flaskblog import db, sess, mail, create_app
 from flaskblog.queries.forms import QuerytForm, Email
 from flaskblog.models import QueryT, Dictionary, Article
 from flaskblog.queries.utils import *
@@ -155,7 +155,6 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 @rq.job
 def send_email(msg):
-    from flaskblog import create_app
     app = create_app()
     app.app_context().push()
     
