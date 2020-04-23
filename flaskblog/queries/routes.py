@@ -16,6 +16,9 @@ from flaskblog import create_app
 
 app = create_app()
 app.app_context().push()
+def send_em(msg)
+    mail.send(msg)
+    return
 
 @queries.route("/queriest/new", methods=['GET', 'POST'])
 def new_queryt():
@@ -158,7 +161,6 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 @rq.job
 def send_email(msg):
-    
-    mail.send(msg)
+    send_em(msg)
     print("done")
     return
