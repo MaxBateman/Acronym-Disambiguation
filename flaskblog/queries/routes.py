@@ -18,7 +18,7 @@ from flaskblog import create_app
 def send_em(msg):
     print(2)
     print("current_app")
-    print("msg")
+    print(msg)
     mail.send(msg)
 
     return
