@@ -1,5 +1,5 @@
-from flask import Blueprint, current_app, has_app_context, render_template, url_for, redirect, flash, Markup, session
-from flaskblog import db, sess, mail, create_app
+from flask import Blueprint, render_template, url_for, redirect, flash, Markup, session
+from flaskblog import db, sess, mail
 from flaskblog.queries.forms import QuerytForm, Email
 from flaskblog.models import QueryT, Dictionary, Article
 from flaskblog.queries.utils import *
@@ -12,8 +12,6 @@ from flaskblog import rq
 from rq.job import Job
 from flask_mail import Message
 queries = Blueprint('queries',__name__)
-from flaskblog import create_app
-
 
 def send_em(msg):
     mail.send(msg)
