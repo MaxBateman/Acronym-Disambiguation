@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, flash, Markup, session
+from flask import Blueprint, render_template, url_for, redirect, flash, Markup, session, current_app
 from flaskblog import db, sess, mail
 from flaskblog.queries.forms import QuerytForm, Email
 from flaskblog.models import QueryT, Dictionary, Article
@@ -137,8 +137,9 @@ def queryt(queryt_id):
 def send_email(subject,sender,recipients,text_body):
     print(subject,sender,recipients,text_body)
     msg = Message(subject, sender=sender, recipients=recipients)
-    msg.body=text_body    
-    mail.send(msg)
+    msg.body=text_body
+    with current_app.app_context():    
+        mail.send(msg)
 
 @rq.job
 def get_inp(data, potential_full, user_id, termdata=None):
