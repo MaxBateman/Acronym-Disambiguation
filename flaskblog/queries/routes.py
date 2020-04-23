@@ -118,7 +118,7 @@ def queryt(queryt_id):
     form = Email()
     if form.is_submitted():
         if form.validate_on_submit():
-            send_email("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
+            #send_email("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
             
             #send_em(msg)
             flash('Email Sent!', 'success')
@@ -135,7 +135,7 @@ def send_email(subject,sender,recipients,text_body):
     msg = Message(subject, sender=sender, recipients=recipients)
     print(1)
     msg.body=text_body
-    print(1)
+    print()
     with current_app.app_context():    
         mail.send(msg)
 
