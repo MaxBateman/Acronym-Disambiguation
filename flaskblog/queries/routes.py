@@ -14,8 +14,7 @@ from flask_mail import Message
 queries = Blueprint('queries',__name__)
 from flaskblog import create_app
 
-app = create_app()
-app.app_context().push()
+
 def send_em(msg):
     mail.send(msg)
     return
@@ -161,6 +160,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
 @rq.job
 def send_email(msg):
+    print("srart")
     send_em(msg)
     print("done")
     return
