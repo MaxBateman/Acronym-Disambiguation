@@ -159,9 +159,9 @@ def get_inp(data, potential_full, user_id, termdata=None):
     return failed
 
 
-@rq.job
-def send_email(msg):
-    print("srart")
-    send_em(msg)
-    print("done")
-    return
+# @rq.job
+# def send_email(msg):
+#     print("srart")
+#     send_em(msg)
+#     print("done")
+#     return
