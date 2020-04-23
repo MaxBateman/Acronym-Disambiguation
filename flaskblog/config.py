@@ -17,6 +17,7 @@ class Config:
     MAIL_DEBUG = True
     MAIL_SERVER = 'smtp.googlemail.com'
     MAIL_PORT = 587
+    MAIL_SUPRESS_SEND = False
     MAIL_USE_TLS = True
     MAIL_USERNAME = 'acrpubmed@gmail.com'
     MAIL_PASSWORD = 'Poohbiecuteacr123'
