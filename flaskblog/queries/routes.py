@@ -13,10 +13,6 @@ from rq.job import Job
 from flask_mail import Message
 queries = Blueprint('queries',__name__)
 
-def send_em(msg):
-    mail.send(msg)
-
-    return
 
 @queries.route("/queriest/new", methods=['GET', 'POST'])
 def new_queryt():
@@ -137,7 +133,9 @@ def queryt(queryt_id):
 def send_email(subject,sender,recipients,text_body):
     print(subject,sender,recipients,text_body)
     msg = Message(subject, sender=sender, recipients=recipients)
+    print(1)
     msg.body=text_body
+    print(1)
     with current_app.app_context():    
         mail.send(msg)
 
