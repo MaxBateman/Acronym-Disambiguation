@@ -121,7 +121,7 @@ def queryt(queryt_id):
             msg = Message("ACRPUBMED - ", ADMINS[0], [form.email.data])
             msg.body = "hell"
             
-            send_email.queue(msg)
+            send_email.queue(msg,app_context())
             flash('Email Sent!', 'success')
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
