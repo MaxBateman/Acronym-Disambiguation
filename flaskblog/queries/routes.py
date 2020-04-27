@@ -59,10 +59,12 @@ def new_queryt():
         #while not qt.get_status() == "finished":
         #    time.sleep(0.2)
         #    print(qt.get_status())
-        print(qt.result)
+        print(qt.result.qid)
+
         if not flashed:
             flash('Your query has been created!', 'success')
-        return redirect(url_for('main.home'))
+        #return redirect(url_for('queries.queryt', queryt_id=qt[2]))
+        #return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
                            form=form, legend='New Query')
@@ -75,7 +77,7 @@ def egg(sterm, termdata):
     qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     flashed = False
-    while qt.result[0] != sterm:
+    while qt.result != sterm:
         time.sleep(1)
         print(qt.result, termdata)
         if qt.result == True:
@@ -161,4 +163,5 @@ def send_email(subject,sender,recipients,text_body):
     print(1)
     msg.body=text_body
     print()
-    mail.send(msg)
+    with current_app.context():
+        mail.send(msg)
