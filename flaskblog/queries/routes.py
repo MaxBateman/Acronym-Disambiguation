@@ -120,7 +120,7 @@ def queryt(queryt_id):
     form = Email()
     if form.is_submitted():
         if form.validate_on_submit():
-            tq = send_email.queue("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
+            send_email.queue("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
             
             #send_em(msg)
             flash('Email Sent!', 'success')
