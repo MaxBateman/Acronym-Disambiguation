@@ -130,14 +130,6 @@ def queryt(queryt_id):
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
     return render_template('queryt.html', form=form, title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=articles)
 
-def send_email(subject,sender,recipients,text_body):
-    print(subject,sender,recipients,text_body)
-    msg = Message(subject, sender=sender, recipients=recipients)
-    print(1)
-    msg.body=text_body
-    print()
-    with current_app.app_context():    
-        mail.send(msg)
 
 @rq.job
 def get_inp(data, potential_full, user_id, termdata=None):
@@ -155,14 +147,18 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
             queryt.author.append(Article(title=title, abstract=abstract, doi=doi, publication_date=publication_date))
         db.session.add(queryt)
+        db.session.flush()
+        qid = queryt.id
         db.session.commit()
-        return search_term
+        return search_term, qid
     return failed
 
 
 @rq.job
-def send_email(msg):
-     print("srart")
-     send_em(msg)
-     print("done")
-     return
+def send_email(subject,sender,recipients,text_body):
+    print(subject,sender,recipients,text_body)
+    msg = Message(subject, sender=sender, recipients=recipients)
+    print(1)
+    msg.body=text_body
+    print()
+    mail.send(msg)
