@@ -75,7 +75,7 @@ def egg(sterm, termdata):
     qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     flashed = False
-    while qt.result != sterm:
+    while qt.result[0] != sterm:
         time.sleep(1)
         print(qt.result, termdata)
         if qt.result == True:
@@ -118,7 +118,7 @@ def queryt(queryt_id):
     form = Email()
     if form.is_submitted():
         if form.validate_on_submit():
-            #send_email("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
+            tq = send_email("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
             
             #send_em(msg)
             flash('Email Sent!', 'success')
@@ -160,9 +160,9 @@ def get_inp(data, potential_full, user_id, termdata=None):
     return failed
 
 
-# @rq.job
-# def send_email(msg):
-#     print("srart")
-#     send_em(msg)
-#     print("done")
-#     return
+@rq.job
+def send_email(msg):
+     print("srart")
+     send_em(msg)
+     print("done")
+     return
