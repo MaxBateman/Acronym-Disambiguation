@@ -59,12 +59,12 @@ def new_queryt():
         #while not qt.get_status() == "finished":
         #    time.sleep(0.2)
         #    print(qt.get_status())
-        print(qt.result.qid)
+        print(qt.result)
 
         if not flashed:
             flash('Your query has been created!', 'success')
         #return redirect(url_for('queries.queryt', queryt_id=qt[2]))
-        #return redirect(url_for('main.home'))
+        return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
                            form=form, legend='New Query')
@@ -152,7 +152,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
         db.session.flush()
         qid = queryt.id
         db.session.commit()
-        return search_term, qid
+        return search_term
     return failed
 
 
@@ -163,5 +163,4 @@ def send_email(subject,sender,recipients,text_body):
     print(1)
     msg.body=text_body
     print()
-    with current_app.context():
-        mail.send(msg)
+    mail.send(msg)
