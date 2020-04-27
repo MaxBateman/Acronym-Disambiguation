@@ -224,6 +224,12 @@ a.article-title:hover {
   border-radius: 0px;
 
 }
+.media-body{
+  overflow:hidden;
+}
+.article-content{
+  overflow: hidden ;
+}
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
