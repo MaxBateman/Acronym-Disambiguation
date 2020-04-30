@@ -15,7 +15,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = config.get('SQLALCHEMY_DATABASE_URI')
     SECRET_KEY = config.get('SECRET_KEY')
     MAIL_DEBUG = True
-    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = config.get('MAIL_USERNAME')
