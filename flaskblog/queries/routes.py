@@ -43,7 +43,12 @@ def new_queryt():
         counter =0
 
         print(qt.result, "hehehe")
-        while qt.result.origterm != form.term.data:
+        looping = True
+        while looping:
+            try: 
+                if qt.result.origterm == form.term.data:
+                    looping = False
+
             time.sleep(1)
             print("zzz", qt.result)
             if qt.result == True:
