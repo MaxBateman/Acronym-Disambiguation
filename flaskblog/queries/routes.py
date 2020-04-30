@@ -64,7 +64,7 @@ def new_queryt():
 
         if not flashed:
             flash('Your query has been created!', 'success')
-        #return redirect(url_for('queries.queryt', queryt_id=qt[2]))
+            return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
