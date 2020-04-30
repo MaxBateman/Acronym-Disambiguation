@@ -41,7 +41,7 @@ def new_queryt():
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
         qt = get_inp.queue(form.term.data, potential_full, user_id)
         counter =0
-        time.sleep(5)
+
         print(qt.result, "hehehe")
         while qt.result.origterm != form.term.data:
             time.sleep(1)
@@ -66,7 +66,7 @@ def new_queryt():
 
         if not flashed:
             flash('Your query has been created!', 'success')
-        #return redirect(url_for('queries.queryt', queryt_id=qt[2]))
+            return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
