@@ -154,6 +154,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
         db.session.add(queryt)
         qid = queryt.id
         db.session.commit()
+        print(queryt)
         return queryt
     return failed
 
