@@ -48,6 +48,8 @@ def new_queryt():
             try: 
                 if qt.result.origterm == form.term.data:
                     looping = False
+            except:
+                print("zzz")
 
             time.sleep(1)
             print("zzz", qt.result)
