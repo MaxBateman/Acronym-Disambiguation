@@ -150,10 +150,9 @@ def get_inp(data, potential_full, user_id, termdata=None):
 
             queryt.author.append(Article(title=title, abstract=abstract, doi=doi, publication_date=publication_date))
         db.session.add(queryt)
-        db.session.flush()
         qid = queryt.id
         db.session.commit()
-        return queryt.id
+        return qid
     return failed
 
 
