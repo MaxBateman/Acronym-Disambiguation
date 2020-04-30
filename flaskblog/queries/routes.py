@@ -42,7 +42,7 @@ def new_queryt():
         qt = get_inp.queue(form.term.data, potential_full, user_id)
         counter =0
         time.sleep(5)
-        print(qt.result.origterm, "hehehe")
+        print(qt.result, "hehehe")
         while qt.result.origterm != form.term.data:
             time.sleep(1)
             print("zzz", qt.result)
