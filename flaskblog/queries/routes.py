@@ -43,7 +43,7 @@ def new_queryt():
         counter =0
         while qt.result != form.term.data:
             time.sleep(1)
-            print(qt.result)
+            print("zzz", qt.result)
             if qt.result == True:
                 flashed = True
                 flash('Your query has not been created!', 'danger')
@@ -64,7 +64,7 @@ def new_queryt():
 
         if not flashed:
             flash('Your query has been created!', 'success')
-            return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
+        #return redirect(url_for('queries.queryt', queryt_id=qt[2]))
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
     return render_template('create_queryt.html', title='New Query',
@@ -78,7 +78,7 @@ def egg(sterm, termdata):
     qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     flashed = False
-    while qt.result.origterm != sterm:
+    while qt.result != sterm:
         time.sleep(1)
         print(qt.result, termdata)
         if qt.result == True:
@@ -153,7 +153,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
         db.session.flush()
         qid = queryt.id
         db.session.commit()
-        return queryt
+        return queryt.id
     return failed
 
 
