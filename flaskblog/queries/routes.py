@@ -78,7 +78,7 @@ def egg(sterm, termdata):
     qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     flashed = False
-    while qt.result != sterm:
+    while qt.result.origterm != sterm:
         time.sleep(1)
         print(qt.result, termdata)
         if qt.result == True:
@@ -152,7 +152,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
         db.session.add(queryt)
         qid = queryt.id
         db.session.commit()
-        return qid
+        return queryt
     return failed
 
 
