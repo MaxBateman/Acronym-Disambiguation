@@ -41,9 +41,9 @@ def new_queryt():
         potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(tempterm[0])).all()
         qt = get_inp.queue(form.term.data, potential_full, user_id)
         counter =0
-        while qt.result.origterm != form.term.data:
+        while qt.result != form.term.data:
             time.sleep(1)
-            print(qt.result.origterm)
+            print(qt.result)
             if qt.result == True:
                 flashed = True
                 flash('Your query has not been created!', 'danger')
