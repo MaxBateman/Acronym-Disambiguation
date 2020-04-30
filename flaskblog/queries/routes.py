@@ -132,10 +132,10 @@ def queryt(queryt_id):
          msg = Message(subject, sender=sender, recipients=recipients)
          msg.body = "hello max"
          mail.send(msg)
-         
+
     if form.is_submitted():
         if form.validate_on_submit():
-            et = send_email.queue("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
+            et = send_email("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
             
             #send_em(msg)
             flash('Email Sent!', 'success')
