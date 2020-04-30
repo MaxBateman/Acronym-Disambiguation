@@ -142,10 +142,10 @@ def queryt(queryt_id):
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
     return render_template('queryt.html', form=form, title=queryt.term, queryt=queryt, lfmatches=lfmatches, acrmatches=acrmatches, content=articles)
 
-    def send_email(subject,sender,recipients,text_body):
-        msg = Message(subject, sender=sender, recipients=recipients)
-        msg.body = "hello max"
-        mail.send(msg)
+    # def send_email(subject,sender,recipients,text_body):
+    #     msg = Message(subject, sender=sender, recipients=recipients)
+    #     msg.body = "hello max"
+    #     mail.send(msg)
 @rq.job
 def get_inp(data, potential_full, user_id, termdata=None):
     time.sleep(0.35)
