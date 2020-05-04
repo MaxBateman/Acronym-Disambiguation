@@ -72,7 +72,7 @@ def new_queryt():
         print(qt.result)
 
         if not flashed:
-            flash('Your query has been created! \n\nFull Form: '+ qt.result.term, 'success')
+            flash('Your query has been created! Full Form: '+ qt.result.term, 'success')
             return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
@@ -87,22 +87,37 @@ def egg(sterm, termdata):
     qt = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     flashed = False
-    while qt.result != sterm:
-        time.sleep(1)
-        print(qt.result, termdata)
-        if qt.result == True:
+    looping = True
+
+    while looping:
+            try: 
+                if qt.result.origterm == sterm:
+                    looping = False
+            except:
+                print("zzz")
+
+            time.sleep(1)
+            if qt.result == True:
                 flashed = True
                 flash('Your query has not been created!', 'danger')
                 break
                 
-        counter = counter +1
-        if counter == 5:
-            flashed = True
-            flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
-            break
+            counter = counter +1
+            if counter == 5:
+                flashed = True
+                flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
+                break
+        #qt = Job.fetch('form.term.data', rq)
+        #print(qt.get_status())
+        #c = False
+        #while not qt.get_status() == "finished":
+        #    time.sleep(0.2)
+        #    print(qt.get_status())
 
-    if not flashed:
-            flash('Your query has been created!', 'success')
+        if not flashed:
+            flash('Your query has been created! Full Form: '+ qt.result.term, 'success')
+            return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
+
     return redirect(url_for('main.home'))
 
 
