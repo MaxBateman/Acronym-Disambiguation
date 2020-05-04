@@ -114,9 +114,9 @@ def egg(sterm, termdata):
         #    time.sleep(0.2)
         #    print(qt.get_status())
 
-        if not flashed:
-            flash('Your query has been created! Full Form: '+ qt.result.term, 'success')
-            return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
+    if not flashed:
+        flash('Your query has been created! Full Form: '+ qt.result.term, 'success')
+        return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
 
     return redirect(url_for('main.home'))
 
