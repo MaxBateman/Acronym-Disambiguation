@@ -72,7 +72,7 @@ def new_queryt():
         print(qt.result)
 
         if not flashed:
-            flash('Your query has been created! Full Form: '+ qt.result.term, 'success')
+            flash('Your query has been created!\nFull Form: '+ qt.result.term, 'success')
             return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
         return redirect(url_for('main.home'))
          #   check_match(abstracts, term)
