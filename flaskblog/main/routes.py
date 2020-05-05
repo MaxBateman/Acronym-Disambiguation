@@ -24,7 +24,7 @@ def home():
 @main.route("/about")
 def about():
     #run_shelly()
-    return render_template('about.html', title='About')
+    return render_template('about.html', title='About', legend='New Query')
 
 
 @main.route("/home/all")

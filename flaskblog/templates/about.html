@@ -1,6 +1,21 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>About Page</h1>
+    <div class="container-fluid">
+        <main role="main">
+            <article class="media content-section col-md-12">
+                <div class="media-body col-md-12">
+                    <legend class="border-bottom mb-4">{{ legend }}</legend>
+                </div>
+            </article>
+
+
+        </main>
+    </div>
+{% endblock content %}
+
+
+
+<h1>About Page</h1>
     <p>Search a term</p>
     <p>If not detected as an acronym, return abstracts for full form</p>
     <p>If detected as acronym:</p>
@@ -9,6 +24,5 @@
     <p>Search abstracts for full form</p>
     <p>For each sentence detect acronym form long form (short form), vice versa</p>
     <p>If valid short form replace long form with search term</p>
-    	<p>Compare search term and short term to find potential acronyms for search term with S&H</p>
+        <p>Compare search term and short term to find potential acronyms for search term with S&H</p>
     <p>Icons made by <a href="https://www.flaticon.com/authors/flat-icons" title="Flat Icons">Flat Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a></p>
-{% endblock content %}
