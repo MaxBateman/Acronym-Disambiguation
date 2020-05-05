@@ -226,9 +226,9 @@ a.article-title:hover {
   border-radius: 0px;
 
 }
-/*.media-body{
-  overflow:hidden;
-}*/
+.media-body{
+  overflow-x:auto;
+}
 .article-content{
   overflow: hidden ;
 }
