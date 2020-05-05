@@ -150,9 +150,8 @@ def queryt(queryt_id):
 
     if form.is_submitted():
         if form.validate_on_submit():
-            et = send_email("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
+            #et = send_email("ACRPUBMED - ", ADMINS[0], [form.email.data],'hell')
             
-            #send_em(msg)
             flash('Email Sent!', 'success')
 
             return redirect(url_for('queries.queryt', queryt_id=queryt.id))
