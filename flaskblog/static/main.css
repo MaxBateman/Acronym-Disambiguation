@@ -207,7 +207,7 @@ a.article-title:hover {
   padding: 0.5em;
   position: absolute;
   z-index: 1;
-  top: 0px;
+  top: -0px;
   right: 110%;
   margin-right: 4px;
   opacity: 0;
