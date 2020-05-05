@@ -246,4 +246,7 @@ a.article-title:hover {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
-
+}  
+.fa-bar-chart {
+  transform: rotate(90deg) scaleX(-1);
+}
