@@ -198,7 +198,7 @@ a.article-title:hover {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 220px;
+  min-width: 220px;
   display:block;
   background-color: black;
   color: #fff;
