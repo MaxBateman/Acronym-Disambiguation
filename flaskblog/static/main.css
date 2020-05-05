@@ -198,13 +198,13 @@ a.article-title:hover {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 220px;
-  height: 190px;
+
+  display:block;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 1em;
   position: absolute;
   z-index: 1;
   top: -5px;
@@ -212,9 +212,9 @@ a.article-title:hover {
   margin-right: 4px;
   opacity: 0;
   transition: opacity 1s;
-  padding-top: 1em;
-}
-#email.form-control{
+
+
+}#email.form-control{
 
   display: inline-flex;
   border-radius: 0px;
