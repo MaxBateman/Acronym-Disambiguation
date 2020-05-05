@@ -227,7 +227,7 @@ a.article-title:hover {
 
 }
 .media-body{
-  overflow-x:auto;
+  overflow-x:hidden;
 }
 .article-content{
   overflow: hidden ;
