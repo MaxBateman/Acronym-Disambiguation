@@ -198,13 +198,13 @@ a.article-title:hover {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  min-width: 220px;
+  min-width: 200px;
   display:block;
   background-color: black;
   color: #fff;
   text-align: center;
   border-radius: 6px;
-  padding: 1em;
+  padding: 0.5em;
   position: absolute;
   z-index: 1;
   top: -5px;
@@ -227,7 +227,7 @@ a.article-title:hover {
 
 }
 .media-body{
-  overflow-x:hidden;
+  overflow:hidden;
 }
 .article-content{
   overflow: hidden ;
