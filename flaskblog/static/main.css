@@ -235,7 +235,7 @@ a.article-title:hover {
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
-  top: 37%;
+  top: 40%;
   left: 100%;
   margin-top: -45px;
   border-width: 5px;
