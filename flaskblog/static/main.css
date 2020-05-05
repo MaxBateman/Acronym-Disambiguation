@@ -247,6 +247,4 @@ a.article-title:hover {
   visibility: visible;
   opacity: 1;
 }  
-.fa-bar-chart {
-  transform: rotate(90deg) scaleX(-1);
-}
+
