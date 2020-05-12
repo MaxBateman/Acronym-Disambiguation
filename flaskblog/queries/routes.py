@@ -90,24 +90,25 @@ def egg(sterm, termdata):
     looping = True
 
     while looping:
-            print(qt2.result.origterm, sterm, "hhhh")
-            try: 
-                if qt2.result.origterm == sterm:
-                    looping = False
-            except:
-                print("zzz")
+        print(qt2.result)
+        try: 
+            #print(qt2.result.origterm, sterm, "hhhh")
+            if qt2.result.origterm == sterm:
+                looping = False
+        except:
+            print("zzz")
 
-            time.sleep(1)
-            if qt2.result == True:
-                flashed = True
-                flash('Your query has not been created, try a different acronym term!', 'danger')
-                break
+        time.sleep(1)
+        if qt2.result == True:
+            flashed = True
+            flash('Your query has not been created, try a different acronym term!', 'danger')
+            break
                 
-            counter = counter +1
-            if counter == 5:
-                flashed = True
-                flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
-                break
+        counter = counter +1
+        if counter == 5:
+            flashed = True
+            flash('Your query may still be pending, please refresh the page in a few seconds.', 'warning')
+            break
         #qt = Job.fetch('form.term.data', rq)
         #print(qt.get_status())
         #c = False
