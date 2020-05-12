@@ -171,7 +171,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
     print("done")
     queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
                     origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches, user_id=user_id)
-    time.sleep(10)
+    
     if not failed:    
         for article in results:
             abstract = article.abstract
