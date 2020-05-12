@@ -14,7 +14,7 @@ def home():
     try:
         queriest[0]
     except IndexError:
-        flash(Markup('''Create a <a href="{{ url_for('main.create_queryt') }}">new query!</a>''', 'success'))
+        flash(Markup('''Create a <a href="{{ url_for('queries.new_queryt') }}">new query!</a>'''), 'success')
     page = request.args.get('page', 1, type=int)
     queriest = queriest.order_by(QueryT.date_posted.desc()).paginate(page=page, per_page=5)
 
