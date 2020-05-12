@@ -55,7 +55,7 @@ def new_queryt():
             print("zzz", qt.result)
             if qt.result == True:
                 flashed = True
-                flash('Your query has not been created!', 'danger')
+                flash('Your query has not been created, try a different acronym term!', 'danger')
                 break
                 
             counter = counter +1
@@ -84,22 +84,22 @@ def new_queryt():
 def egg(sterm, termdata):
     user_id = session.sid
     potential_full = Dictionary.query.filter(Dictionary.terminology.startswith(sterm[0])).all()
-    qt = get_inp.queue(sterm, potential_full, user_id, termdata)
+    qt2 = get_inp.queue(sterm, potential_full, user_id, termdata)
     counter =0
     flashed = False
     looping = True
 
     while looping:
             try: 
-                if qt.result.origterm == sterm:
+                if qt2.result.origterm == sterm:
                     looping = False
             except:
                 print("zzz")
 
             time.sleep(1)
-            if qt.result == True:
+            if qt2.result == True:
                 flashed = True
-                flash('Your query has not been created!', 'danger')
+                flash('Your query has not been created, try a different acronym term!', 'danger')
                 break
                 
             counter = counter +1
@@ -115,8 +115,8 @@ def egg(sterm, termdata):
         #    print(qt.get_status())
 
     if not flashed:
-        flash('Your query has been created! Full Form: '+ qt.result.term, 'success')
-        return redirect(url_for('queries.queryt', queryt_id=qt.result.id))
+        flash('Your query has been created! Full Form: '+ qt2.result.term, 'success')
+        return redirect(url_for('queries.queryt', queryt_id=qt2.result.id))
 
     return redirect(url_for('main.home'))
 
@@ -143,10 +143,10 @@ def queryt(queryt_id):
             article.abstract = Markup(article.abstract)
 
     form = Email()
-    def send_email(subject,sender,recipients,text_body):
-         msg = Message(subject, sender=sender, recipients=recipients)
-         msg.body = "hello max"
-         mail.send(msg)
+    # def send_email(subject,sender,recipients,text_body):
+    #      msg = Message(subject, sender=sender, recipients=recipients)
+    #      msg.body = "hello max"
+    #      mail.send(msg)
 
     if form.is_submitted():
         if form.validate_on_submit():
@@ -169,6 +169,7 @@ def get_inp(data, potential_full, user_id, termdata=None):
     print("done")
     queryt = QueryT(origterm=search_term, term=fword, content=abstracts, percentmatch=percentmatch,
                     origtermpresent=present, acrmatches=acrmatches, lfmatches=lfmatches, user_id=user_id)
+    time.sleep(10)
     if not failed:    
         for article in results:
             abstract = article.abstract
@@ -189,7 +190,6 @@ def get_inp(data, potential_full, user_id, termdata=None):
 def send_email(subject,sender,recipients,text_body):
     print(subject,sender,recipients,text_body)
     msg = Message(subject, sender=sender, recipients=recipients)
-    print(1)
     msg.body=text_body
     print()
     mail.send(msg)
