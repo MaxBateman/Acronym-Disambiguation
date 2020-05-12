@@ -90,6 +90,7 @@ def egg(sterm, termdata):
     looping = True
 
     while looping:
+            print(qt2.result.origterm, sterm, "hhhh")
             try: 
                 if qt2.result.origterm == sterm:
                     looping = False
